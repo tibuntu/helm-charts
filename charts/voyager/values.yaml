@@ -1,13 +1,14 @@
 replicaCount: 1
 
 image:
-  registry: "ghcr.io"
-  repository: "aeharding/voyager"
+  registry: ghcr.io
+  repository: aeharding/voyager
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: latest
 
-# Enable if you want to set custom Lemmy servers, see: https://github.com/aeharding/voyager#environment-variables
+# -- Set custom environment variables
 environment: {}
+  # -- Enable if you want to set custom Lemmy servers, see: https://github.com/aeharding/voyager#environment-variables
   # - name: CUSTOM_LEMMY_SERVERS
   #   value: "lemmy.world,lemmy.ml,sh.itjust.works"
 
@@ -16,14 +17,14 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
-  create: false
+  create: true
   annotations: {}
   name: ""
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 911
 
 securityContext:
   capabilities:
@@ -43,7 +44,7 @@ ingress:
   className: ""
   annotations: {}
   hosts:
-    - host: chart-example.local
+    - host: voyager.my-domain.com
       paths:
         - path: /
           pathType: ImplementationSpecific
@@ -53,12 +54,12 @@ ingress:
   #      - chart-example.local
 
 resources:
-  limits:
-    cpu: 500m
-    memory: 512Mi
   requests:
-    cpu: 100m
-    memory: 128Mi
+    cpu: 10m
+    memory: 50M
+  limits:
+    cpu: 50m
+    memory: 150M
 
 nodeSelector: {}
 
