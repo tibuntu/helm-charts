@@ -7,7 +7,7 @@ appVersion: latest
 kubeVersion: ">=1.16.0-0"
 keywords:
   - voyager
-home: https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager
+home: https://github.com/tibuntu/helm-charts/tree/main/charts/voyager
 sources:
   - https://github.com/aeharding/voyager
 maintainers:
