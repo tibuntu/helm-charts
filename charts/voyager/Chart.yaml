@@ -2,7 +2,7 @@ apiVersion: v2
 name: voyager
 description: A Helm chart for Voyager
 type: application
-version: 1.0.2
+version: 1.1.0
 appVersion: latest
 kubeVersion: ">=1.16.0-0"
 keywords:
@@ -16,5 +16,5 @@ maintainers:
 dependencies: []
 annotations:
   artifacthub.io/changes: |
-    - kind: added
-      description: Enrich chart metadata
+    - kind: changed
+      description: Improve securityContext, resource requests and limits and README.md
