@@ -2,7 +2,7 @@ apiVersion: v2
 name: voyager
 description: A Helm chart for Voyager
 type: application
-version: 1.1.0
+version: 1.1.1
 appVersion: latest
 kubeVersion: ">=1.16.0-0"
 keywords:
@@ -17,4 +17,4 @@ dependencies: []
 annotations:
   artifacthub.io/changes: |
     - kind: changed
-      description: Improve securityContext, resource requests and limits and README.md
+      description: Fix default memory limits being too low

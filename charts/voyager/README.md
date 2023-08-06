@@ -1,6 +1,6 @@
 # voyager
 
-![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Voyager
 
@@ -45,7 +45,7 @@ Kubernetes: `>=1.16.0-0`
 | podSecurityContext.fsGroup | int | `911` |  |
 | replicaCount | int | `1` |  |
 | resources.limits.cpu | string | `"50m"` |  |
-| resources.limits.memory | string | `"150M"` |  |
+| resources.limits.memory | string | `"350M"` |  |
 | resources.requests.cpu | string | `"10m"` |  |
 | resources.requests.memory | string | `"50M"` |  |
 | securityContext.capabilities.drop[0] | string | `"ALL"` |  |
