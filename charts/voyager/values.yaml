@@ -59,7 +59,7 @@ resources:
     memory: 50M
   limits:
     cpu: 50m
-    memory: 150M
+    memory: 350M
 
 nodeSelector: {}
 
