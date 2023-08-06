@@ -1,8 +1,24 @@
 # voyager
 
-![Version: 1.0.1](https://img.shields.io/badge/Version-1.0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.0.2](https://img.shields.io/badge/Version-1.0.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Voyager
+
+**Homepage:** <https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager>
+
+## Maintainers
+
+| Name | Email | Url |
+| ---- | ------ | --- |
+| Timo Hankamer | <timo.hankamer@tibuntu.dev> |  |
+
+## Source Code
+
+* <https://github.com/aeharding/voyager>
+
+## Requirements
+
+Kubernetes: `>=1.16.0-0`
 
 ## Values
 

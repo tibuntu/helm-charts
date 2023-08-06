@@ -2,5 +2,19 @@ apiVersion: v2
 name: voyager
 description: A Helm chart for Voyager
 type: application
-version: 1.0.1
+version: 1.0.2
 appVersion: latest
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - voyager
+home: https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager
+sources:
+  - https://github.com/aeharding/voyager
+maintainers:
+  - name: Timo Hankamer
+    email: timo.hankamer@tibuntu.dev
+dependencies: []
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Enrich chart metadata
