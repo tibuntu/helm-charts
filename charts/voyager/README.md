@@ -4,7 +4,7 @@
 
 A Helm chart for Voyager
 
-**Homepage:** <https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager>
+**Homepage:** <https://github.com/tibuntu/helm-charts/tree/main/charts/voyager>
 
 ## Maintainers
 
