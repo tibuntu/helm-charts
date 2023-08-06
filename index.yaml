@@ -4,6 +4,29 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Fix default memory limits being too low
+    apiVersion: v2
+    appVersion: latest
+    created: "2023-08-06T10:20:22.211968294Z"
+    description: A Helm chart for Voyager
+    digest: dda5fdd4709c4660ee3ab740783c52ddbdf88dd1a9a5dcf3120721ee15af6c82
+    home: https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager
+    keywords:
+    - voyager
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: timo.hankamer@tibuntu.dev
+      name: Timo Hankamer
+    name: voyager
+    sources:
+    - https://github.com/aeharding/voyager
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.1.1/voyager-1.1.1.tgz
+    version: 1.1.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Improve securityContext, resource requests and limits and README.md
     apiVersion: v2
     appVersion: latest
@@ -66,4 +89,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-06T10:11:35.08069028Z"
+generated: "2023-08-06T10:20:22.212006794Z"
