@@ -4,6 +4,26 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: changed
+          description: Fix default cpu limits being too strict
+    apiVersion: v2
+    appVersion: latest
+    created: "2023-08-12T06:41:50.068444291Z"
+    description: A Helm chart for Voyager
+    digest: 3b59ed84635db2fa4270f9b86b98ac069b093044e4ebe105c518f75a30501877
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/voyager
+    keywords:
+    - voyager
+    kubeVersion: '>=1.16.0-0'
+    name: voyager
+    sources:
+    - https://github.com/aeharding/voyager
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.1.2/voyager-1.1.2.tgz
+    version: 1.1.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: changed
           description: Fix default memory limits being too low
     apiVersion: v2
     appVersion: latest
@@ -89,4 +109,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2023-08-06T10:20:22.212006794Z"
+generated: "2023-08-12T06:41:50.068465091Z"
