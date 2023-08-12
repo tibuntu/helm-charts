@@ -1,16 +1,10 @@
 # voyager
 
-![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
+![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: latest](https://img.shields.io/badge/AppVersion-latest-informational?style=flat-square)
 
 A Helm chart for Voyager
 
 **Homepage:** <https://github.com/tibuntu/helm-charts/tree/main/charts/voyager>
-
-## Maintainers
-
-| Name | Email | Url |
-| ---- | ------ | --- |
-| Timo Hankamer | <timo.hankamer@tibuntu.dev> |  |
 
 ## Source Code
 
@@ -44,9 +38,9 @@ Kubernetes: `>=1.16.0-0`
 | podAnnotations | object | `{}` |  |
 | podSecurityContext.fsGroup | int | `911` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"50m"` |  |
+| resources.limits.cpu | string | `"200m"` |  |
 | resources.limits.memory | string | `"350M"` |  |
-| resources.requests.cpu | string | `"10m"` |  |
+| resources.requests.cpu | string | `"15m"` |  |
 | resources.requests.memory | string | `"50M"` |  |
 | securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | securityContext.readOnlyRootFilesystem | bool | `true` |  |
