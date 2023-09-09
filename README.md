@@ -13,6 +13,7 @@ Tibuntu Helm Charts on a [Kubernetes](https://kubernetes.io) cluster using the
 ## Charts
 
 - [Voyager](https://github.com/tibuntu/helm-charts/tree/main/charts/voyager)
+- [Jelu](https://github.com/tibuntu/helm-charts/tree/main/charts/jelu)
 
 All my charts are also available via [ArtifactHub](https://artifacthub.io/packages/search?user=tibuntu)
 
@@ -30,7 +31,7 @@ helm repo add tibuntu https://tibuntu.github.io/helm-charts
 helm repo update
 ```
 
-## Installing the Chart
+## Installing a Chart
 
 Search all the repositories available
 ```

@@ -1,0 +1,63 @@
+{{ if .Values.persistence.config.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    {{- include "jelu.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-config
+spec:
+  accessModes:
+  - {{ .Values.persistence.config.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.config.size }}
+  storageClassName: {{ .Values.persistence.config.storageClassname }}
+{{ end }}
+---
+{{ if .Values.persistence.database.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    {{- include "jelu.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-database
+spec:
+  accessModes:
+  - {{ .Values.persistence.database.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.database.size }}
+  storageClassName: {{ .Values.persistence.database.storageClassname }}
+{{ end }}
+---
+{{ if .Values.persistence.images.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    {{- include "jelu.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-images
+spec:
+  accessModes:
+  - {{ .Values.persistence.images.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.images.size }}
+  storageClassName: {{ .Values.persistence.images.storageClassname }}
+{{ end }}
+---
+{{ if .Values.persistence.imports.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    {{- include "jelu.labels" . | nindent 4 }}
+  name: {{ .Chart.Name }}-imports
+spec:
+  accessModes:
+  - {{ .Values.persistence.imports.accessModes }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.imports.size }}
+  storageClassName: {{ .Values.persistence.imports.storageClassname }}
+{{ end }}
