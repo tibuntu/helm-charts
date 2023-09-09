@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "jelu.fullname" . }}
+  labels:
+    {{- include "jelu.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "jelu.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "jelu.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "jelu.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.environment }}
+          env:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{ if or .Values.persistence.config.enabled .Values.persistence.images.enabled .Values.persistence.database.enabled .Values.persistence.imports.enabled -}}
+          volumeMounts:
+          {{- end }}
+          {{ if .Values.persistence.config.enabled -}}
+          - mountPath: /config
+            name: {{ .Release.Name }}-config
+          {{- end }}
+          {{ if .Values.persistence.database.enabled -}}
+          - mountPath: /database
+            name: {{ .Release.Name }}-database
+          {{- end }}
+          {{ if .Values.persistence.images.enabled -}}
+          - mountPath: /files/images
+            name: {{ .Release.Name }}-images
+          {{- end }}
+          {{ if .Values.persistence.imports.enabled -}}
+          - mountPath: /files/imports
+            name: {{ .Release.Name }}-imports
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{ if or .Values.persistence.config.enabled .Values.persistence.images.enabled .Values.persistence.database.enabled .Values.persistence.imports.enabled -}}
+      volumes:
+      {{- end }}
+      {{ if .Values.persistence.config.enabled -}}
+      - name: {{ .Release.Name }}-config
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-config
+      {{- end }}
+      {{ if .Values.persistence.database.enabled -}}
+      - name: {{ .Release.Name }}-database
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-database
+      {{- end }}
+      {{ if .Values.persistence.images.enabled -}}
+      - name: {{ .Release.Name }}-images
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-images
+      {{- end }}
+      {{ if .Values.persistence.imports.enabled -}}
+      - name: {{ .Release.Name }}-imports
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-imports
+      {{- end }}
