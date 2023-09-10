@@ -24,6 +24,26 @@ entries:
   kubernetes-node-shutdown:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: Remove liveness/readiness probes
+    apiVersion: v2
+    appVersion: v0.0.1
+    created: "2023-09-10T13:52:18.771666755Z"
+    description: A Helm chart for kubernetes-node-shutdown
+    digest: 3268a8ad374a416b2332eb0449b78bc0337546be17c2749dbeb9a09b86147dec
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/kubernetes-node-shutdown
+    keywords:
+    - kubernetes-node-shutdown
+    kubeVersion: '>=1.16.0-0'
+    name: kubernetes-node-shutdown
+    sources:
+    - https://github.com/tibuntu/kubernetes-node-shutdown
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/kubernetes-node-shutdown-1.0.1/kubernetes-node-shutdown-1.0.1.tgz
+    version: 1.0.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: Initial chart release
     apiVersion: v2
@@ -151,4 +171,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-10T13:37:06.000573974Z"
+generated: "2023-09-10T13:52:18.771683255Z"
