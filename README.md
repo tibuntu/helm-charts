@@ -14,6 +14,7 @@ Tibuntu Helm Charts on a [Kubernetes](https://kubernetes.io) cluster using the
 
 - [Voyager](https://github.com/tibuntu/helm-charts/tree/main/charts/voyager)
 - [Jelu](https://github.com/tibuntu/helm-charts/tree/main/charts/jelu)
+- [Kubernetes-node-shutdown](https://github.com/tibuntu/helm-charts/tree/main/charts/kubernetes-node-shutdown)
 
 All my charts are also available via [ArtifactHub](https://artifacthub.io/packages/search?user=tibuntu)
 

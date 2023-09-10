@@ -1,0 +1,17 @@
+apiVersion: v2
+name: kubernetes-node-shutdown
+description: A Helm chart for kubernetes-node-shutdown
+type: application
+version: 1.0.0
+appVersion: v0.0.1
+kubeVersion: ">=1.16.0-0"
+keywords:
+  - kubernetes-node-shutdown
+home: https://github.com/tibuntu/helm-charts/tree/main/charts/kubernetes-node-shutdown
+sources:
+  - https://github.com/tibuntu/kubernetes-node-shutdown
+dependencies: []
+annotations:
+  artifacthub.io/changes: |
+    - kind: added
+      description: Initial chart release
