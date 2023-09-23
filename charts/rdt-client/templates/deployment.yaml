@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "rdt-client.fullname" . }}
+  labels:
+    {{- include "rdt-client.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "rdt-client.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "rdt-client.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "rdt-client.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.environment }}
+          env:
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          {{ if or .Values.persistence.db.enabled .Values.persistence.downloads.enabled -}}
+          volumeMounts:
+          {{- end }}
+          {{ if .Values.persistence.downloads.enabled -}}
+          - mountPath: /data/downloads
+            name: {{ .Release.Name }}-downloads
+          {{- end }}
+          {{ if .Values.persistence.db.enabled -}}
+          - mountPath: /data/db
+            name: {{ .Release.Name }}-db
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{ if or .Values.persistence.db.enabled .Values.persistence.downloads.enabled -}}
+      volumes:
+      {{- end }}
+      {{ if .Values.persistence.db.enabled -}}
+      - name: {{ .Release.Name }}-db
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-db
+      {{- end }}
+      {{ if .Values.persistence.downloads.enabled -}}
+      - name: {{ .Release.Name }}-downloads
+        hostPath:
+          path: {{ .Values.persistence.downloads.hostPath }}
+          type: DirectoryOrCreate
+      {{- end }}
