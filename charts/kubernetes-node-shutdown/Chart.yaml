@@ -2,8 +2,8 @@ apiVersion: v2
 name: kubernetes-node-shutdown
 description: A Helm chart for kubernetes-node-shutdown
 type: application
-version: 1.0.1
-appVersion: v0.0.1
+version: 1.1.0
+appVersion: v0.1.0
 kubeVersion: ">=1.16.0-0"
 keywords:
   - kubernetes-node-shutdown
@@ -13,5 +13,7 @@ sources:
 dependencies: []
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: Remove liveness/readiness probes
+    - kind: added
+      description: Environment variables required by v0.1.0
+    - kind: changed
+      description: Update image.tag to v0.1.0
