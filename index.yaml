@@ -24,6 +24,28 @@ entries:
   kubernetes-node-shutdown:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: Environment variables required by v0.1.0
+        - kind: changed
+          description: Update image.tag to v0.1.0
+    apiVersion: v2
+    appVersion: v0.1.0
+    created: "2023-12-09T12:05:42.131329106Z"
+    description: A Helm chart for kubernetes-node-shutdown
+    digest: 94eda4d791f73fad8064816dab2eb2fb393c58266faae2cc6d3d636e394467fe
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/kubernetes-node-shutdown
+    keywords:
+    - kubernetes-node-shutdown
+    kubeVersion: '>=1.16.0-0'
+    name: kubernetes-node-shutdown
+    sources:
+    - https://github.com/tibuntu/kubernetes-node-shutdown
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/kubernetes-node-shutdown-1.1.0/kubernetes-node-shutdown-1.1.0.tgz
+    version: 1.1.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: Remove liveness/readiness probes
     apiVersion: v2
@@ -192,4 +214,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2023-09-23T19:59:59.793511394Z"
+generated: "2023-12-09T12:05:42.13135282Z"
