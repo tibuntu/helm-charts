@@ -13,22 +13,20 @@ Tibuntu Helm Charts on a [Kubernetes](https://kubernetes.io) cluster using the
 ## Charts
 
 - [Voyager](https://github.com/tibuntu/helm-charts/tree/main/charts/voyager)
-- [Jelu](https://github.com/tibuntu/helm-charts/tree/main/charts/jelu)
-- [Kubernetes-node-shutdown](https://github.com/tibuntu/helm-charts/tree/main/charts/kubernetes-node-shutdown)
-- [rdt-client](https://github.com/tibuntu/helm-charts/tree/main/charts/rdt-client)
+- [unpoller](https://github.com/tibuntu/helm-charts/tree/main/charts/unpoller)
 
 All my charts are also available via [ArtifactHub](https://artifacthub.io/packages/search?user=tibuntu)
 
 ## Installing [Helm](https://helm.sh)
 
-```
+```bash
 curl -L https://git.io/get_helm.sh | bash
 helm init
 ```
 
 ## Installing Tibuntu Helm Repository
 
-```
+```bash
 helm repo add tibuntu https://tibuntu.github.io/helm-charts
 helm repo update
 ```
@@ -36,12 +34,14 @@ helm repo update
 ## Installing a Chart
 
 Search all the repositories available
-```
+
+```bash
 helm search repo tibuntu -l
 ```
 
 Install specific helm chart
-```
+
+```bash
 helm install voyager tibuntu/voyager
 helm status voyager
 ```
@@ -50,6 +50,6 @@ helm status voyager
 
 To uninstall/delete the `voyager` deployment:
 
-```
-$ helm delete voyager
+```bash
+helm delete voyager
 ```
