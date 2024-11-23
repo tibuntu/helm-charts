@@ -105,6 +105,22 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/rdt-client-1.0.0/rdt-client-1.0.0.tgz
     version: 1.0.0
+  unpoller:
+  - annotations:
+      artifacthub.io/changes: |
+        - Add support for existing secrets that contain the unpoller config
+    apiVersion: v2
+    appVersion: v2.9.2
+    created: "2024-11-23T07:22:19.379518176Z"
+    description: Deploy UniFi Poller
+    digest: 7cada6ee69d5e4debcb35ff85a42c9ca39574d8f13d28a5ac053f94f90c7212a
+    home: https://unpoller.com
+    name: unpoller
+    sources:
+    - https://unpoller.com
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/unpoller-0.1.0/unpoller-0.1.0.tgz
+    version: 0.1.0
   voyager:
   - annotations:
       artifacthub.io/changes: |
@@ -214,4 +230,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2023-12-09T12:05:42.13135282Z"
+generated: "2024-11-23T07:22:19.379544725Z"
