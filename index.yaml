@@ -1,5 +1,22 @@
 apiVersion: v1
 entries:
+  generic:
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: feat
+          description: Initial release
+    apiVersion: v2
+    created: "2025-03-01T07:54:27.441067786Z"
+    description: A Helm chart for generic applications
+    digest: d345eb8c4ce2d269dbba1d581716208a32bef760058193a8ca86c04b4237a32d
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.0.1/generic-0.0.1.tgz
+    version: 0.0.1
   jelu:
   - annotations:
       artifacthub.io/changes: |
@@ -230,4 +247,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2024-11-23T07:22:19.379544725Z"
+generated: "2025-03-01T07:54:27.441090058Z"
