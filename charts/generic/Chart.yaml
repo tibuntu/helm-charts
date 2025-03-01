@@ -3,7 +3,7 @@ apiVersion: v2
 name: generic
 description: A Helm chart for generic applications
 type: application
-version: 0.0.1
+version: 0.0.2
 appVersion: ""
 keywords:
   - generic
@@ -12,4 +12,4 @@ dependencies: []
 annotations:
   artifacthub.io/changes: |
     - kind: feat
-      description: Initial release
+      description: add configuration for liveness & readiness probes

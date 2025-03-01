@@ -36,6 +36,16 @@ securityContext:
   runAsUser: 911
   runAsGroup: 911
 
+livenessProbe:
+  enabled: false
+  port: 8080
+  path: /
+
+readinessProbe:
+  enabled: false
+  port: 8080
+  path: /
+
 service:
   type: ClusterIP
   port: 5314
