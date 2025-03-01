@@ -3,6 +3,22 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: fix whitespace rendering when enabling probes
+    apiVersion: v2
+    created: "2025-03-01T08:34:32.566676827Z"
+    description: A Helm chart for generic applications
+    digest: 26e6d40e9bcf06ca8fb7801d439ad579af016fe20a1132969c3318ed7ff8cac7
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.0.3/generic-0.0.3.tgz
+    version: 0.0.3
+  - annotations:
+      artifacthub.io/changes: |
         - kind: feat
           description: add configuration for liveness & readiness probes
     apiVersion: v2
@@ -263,4 +279,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-01T08:30:06.059825535Z"
+generated: "2025-03-01T08:34:32.566703777Z"
