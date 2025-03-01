@@ -3,7 +3,7 @@ apiVersion: v2
 name: generic
 description: A Helm chart for generic applications
 type: application
-version: 0.0.2
+version: 0.0.3
 appVersion: ""
 keywords:
   - generic
@@ -11,5 +11,5 @@ home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
 dependencies: []
 annotations:
   artifacthub.io/changes: |
-    - kind: feat
-      description: add configuration for liveness & readiness probes
+    - kind: fixed
+      description: fix whitespace rendering when enabling probes
