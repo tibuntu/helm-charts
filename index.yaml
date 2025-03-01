@@ -4,6 +4,22 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: feat
+          description: add configuration for liveness & readiness probes
+    apiVersion: v2
+    created: "2025-03-01T08:30:06.059799987Z"
+    description: A Helm chart for generic applications
+    digest: f1ac920681abbc62b8ca1158cb90c54f8c128d74b9b60fff241e6823b661039d
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.0.2/generic-0.0.2.tgz
+    version: 0.0.2
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: feat
           description: Initial release
     apiVersion: v2
     created: "2025-03-01T07:54:27.441067786Z"
@@ -247,4 +263,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-01T07:54:27.441090058Z"
+generated: "2025-03-01T08:30:06.059825535Z"
