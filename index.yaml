@@ -3,6 +3,22 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: add initialDelaySeconds to probes
+    apiVersion: v2
+    created: "2025-03-02T08:00:57.488907802Z"
+    description: A Helm chart for generic applications
+    digest: ae453f1fe7ed25023ec485827a970b29f0a90d128eadc1fad92758a601a75cd1
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.2.0/generic-0.2.0.tgz
+    version: 0.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: use helper function not values for container name
     apiVersion: v2
@@ -311,4 +327,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-02T07:57:35.575884463Z"
+generated: "2025-03-02T08:00:57.488943399Z"
