@@ -3,6 +3,22 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: use helper function not values for container name
+    apiVersion: v2
+    created: "2025-03-02T07:57:35.575851372Z"
+    description: A Helm chart for generic applications
+    digest: 878cb958b770b22d1828de9410f2202075c5c57a5ffcc5df2adbf40905c153e2
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.1.1/generic-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: simplify container naming
     apiVersion: v2
@@ -295,4 +311,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-02T07:56:10.627919266Z"
+generated: "2025-03-02T07:57:35.575884463Z"
