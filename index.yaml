@@ -3,6 +3,22 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: do not longer set default resource requests/limits
+    apiVersion: v2
+    created: "2025-03-02T08:04:40.876428188Z"
+    description: A Helm chart for generic applications
+    digest: 81060ed971f6bf520b93b29703aec36cc3dcbabd87cb36681ed635c3122eb714
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.2.1/generic-0.2.1.tgz
+    version: 0.2.1
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: add initialDelaySeconds to probes
     apiVersion: v2
@@ -327,4 +343,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-02T08:00:57.488943399Z"
+generated: "2025-03-02T08:04:40.876468554Z"
