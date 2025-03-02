@@ -37,11 +37,13 @@ securityContext:
 
 livenessProbe:
   enabled: false
+  initialDelaySeconds: 10
   port: 8080
   path: /
 
 readinessProbe:
   enabled: false
+  initialDelaySeconds: 10
   port: 8080
   path: /
 

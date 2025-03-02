@@ -40,12 +40,14 @@ spec:
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
+              initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
               path: {{ .Values.livenessProbe.path }}
               port: {{ .Values.livenessProbe.port }}
           {{- end -}}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
+              initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.readinessProbe.port }}
           {{- end }}

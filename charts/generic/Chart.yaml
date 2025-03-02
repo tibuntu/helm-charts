@@ -3,7 +3,7 @@ apiVersion: v2
 name: generic
 description: A Helm chart for generic applications
 type: application
-version: 0.1.1
+version: 0.2.0
 appVersion: ""
 keywords:
   - generic
@@ -11,5 +11,5 @@ home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
 dependencies: []
 annotations:
   artifacthub.io/changes: |
-    - kind: fixed
-      description: use helper function not values for container name
+    - kind: changed
+      description: add initialDelaySeconds to probes
