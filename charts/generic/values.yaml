@@ -66,12 +66,8 @@ ingress:
   #      - chart-example.local
 
 resources:
-  requests:
-    cpu: 15m
-    memory: 50M
-  limits:
-    cpu: 200m
-    memory: 350M
+  requests: {}
+  limits: {}
 
 nodeSelector: {}
 
