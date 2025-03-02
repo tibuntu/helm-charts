@@ -40,16 +40,16 @@ spec:
           {{- if .Values.livenessProbe.enabled }}
           livenessProbe:
             httpGet:
-              initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
               path: {{ .Values.livenessProbe.path }}
               port: {{ .Values.livenessProbe.port }}
+            initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
           {{- end -}}
           {{- if .Values.readinessProbe.enabled }}
           readinessProbe:
             httpGet:
-              initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
               path: {{ .Values.readinessProbe.path }}
               port: {{ .Values.readinessProbe.port }}
+            initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
