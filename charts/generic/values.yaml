@@ -9,7 +9,6 @@ image:
 
 # -- Set custom environment variables
 environment: {}
-  # -- Enable if you want to set custom Lemmy servers, see: https://github.com/aeharding/generic#environment-variables
   # - name: MY_ENV_VAR
   #   value: "my_value"
 
