@@ -9,8 +9,8 @@ image:
 
 # -- Set custom environment variables
 environment: {}
-  # - name: MY_ENV_VAR
-  #   value: "my_value"
+# - name: MY_ENV_VAR
+#   value: "my_value"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -29,7 +29,7 @@ podSecurityContext:
 securityContext:
   capabilities:
     drop:
-    - ALL
+      - ALL
   readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 911
