@@ -3,6 +3,22 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: add support for persistent volume claim
+    apiVersion: v2
+    created: "2025-03-10T18:29:56.004786384Z"
+    description: A Helm chart for generic applications
+    digest: f46ecbcd88b89a99d62a01cc30f7c92b0012030edfc2a242d64375067d611555
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.3.0/generic-0.3.0.tgz
+    version: 0.3.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: set initialDelaySeconds on proper spec
     apiVersion: v2
@@ -359,4 +375,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-02T08:08:46.386537686Z"
+generated: "2025-03-10T18:29:56.004861203Z"
