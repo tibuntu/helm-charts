@@ -74,3 +74,23 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# Persistence configuration
+persistence:
+  # Enable persistence
+  enabled: false
+
+  # Name of the PVC. If not set, will be generated as {release-name}-pvc
+  name: ""
+
+  # Storage size for the PVC
+  size: "1Gi"
+
+  # Access mode for the PVC (ReadWriteOnce, ReadOnlyMany, or ReadWriteMany)
+  accessMode: "ReadWriteOnce"
+
+  # Storage class name. If not set, will use the default storage class
+  storageClass: ""
+
+  # Mount path for the PVC in the container (default: /data)
+  mountPath: "/data"
