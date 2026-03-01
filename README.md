@@ -12,8 +12,8 @@ Tibuntu Helm Charts on a [Kubernetes](https://kubernetes.io) cluster using the
 
 ## Charts
 
-- [Voyager](https://github.com/tibuntu/helm-charts/tree/main/charts/voyager)
-- [unpoller](https://github.com/tibuntu/helm-charts/tree/main/charts/unpoller)
+- [generic](https://github.com/tibuntu/helm-charts/tree/main/charts/generic) - A Helm chart for generic applications
+- [voyager](https://github.com/tibuntu/helm-charts/tree/main/charts/voyager) - A Helm chart for Voyager
 
 All my charts are also available via [ArtifactHub](https://artifacthub.io/packages/search?user=tibuntu)
 
