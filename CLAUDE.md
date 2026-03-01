@@ -29,7 +29,7 @@ Releases are fully automated via `helm/chart-releaser-action` (`.github/workflow
 2. Update the `artifacthub.io/changes` annotation in `Chart.yaml`
 3. Merge to `main` — the release workflow creates a GitHub Release tagged `<chart-name>-<version>`, packages the chart tarball, and updates `index.yaml` on the `gh-pages` branch
 
-A release is only triggered when the chart version is new; the action skips charts whose current version tag already exists.
+The release workflow only triggers on pushes that modify a `Chart.yaml` file, so routine changes (templates, values, docs) do not attempt a release.
 
 ## Automation
 
