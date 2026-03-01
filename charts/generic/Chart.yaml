@@ -4,7 +4,7 @@ name: generic
 description: A Helm chart for generic applications
 type: application
 kubeVersion: ">=1.22.0-0"
-version: 0.3.0
+version: 0.4.0
 appVersion: ""
 keywords:
   - generic
@@ -12,5 +12,11 @@ home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
 dependencies: []
 annotations:
   artifacthub.io/changes: |
+    - kind: added
+      description: add extraEmptyDirs support for writable volume mounts
     - kind: changed
-      description: add support for persistent volume claim
+      description: require Kubernetes >= 1.22, drop legacy ingress API versions
+    - kind: fixed
+      description: PVC now uses fullname and standard labels helper
+    - kind: fixed
+      description: container name now uses release name instead of chart fullname
