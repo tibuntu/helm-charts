@@ -94,3 +94,8 @@ persistence:
 
   # Mount path for the PVC in the container (default: /data)
   mountPath: "/data"
+
+# Mount additional emptyDir volumes. Useful when readOnlyRootFilesystem is enabled.
+extraEmptyDirs: []
+# - name: tmp
+#   mountPath: /tmp
