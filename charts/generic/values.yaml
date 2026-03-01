@@ -99,3 +99,23 @@ persistence:
 extraEmptyDirs: []
 # - name: tmp
 #   mountPath: /tmp
+
+# Additional PersistentVolumeClaims to create and mount
+additionalPersistentVolumeClaims: []
+# - name: media          # PVC name suffix (becomes {fullname}-media)
+#   size: "10Gi"
+#   accessMode: "ReadWriteOnce"
+#   storageClass: ""
+#   mountPath: "/media"
+
+# Additional volumes to add to the pod (raw Kubernetes volume specs)
+additionalVolumes: []
+# - name: my-config
+#   configMap:
+#     name: my-configmap
+
+# Additional volume mounts to add to the container (raw Kubernetes volumeMount specs)
+additionalVolumeMounts: []
+# - name: my-config
+#   mountPath: /etc/myapp/config
+#   readOnly: true
