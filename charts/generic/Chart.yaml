@@ -3,6 +3,7 @@ apiVersion: v2
 name: generic
 description: A Helm chart for generic applications
 type: application
+kubeVersion: ">=1.22.0-0"
 version: 0.3.0
 appVersion: ""
 keywords:

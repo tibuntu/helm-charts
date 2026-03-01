@@ -4,7 +4,7 @@ description: A Helm chart for Voyager
 type: application
 version: 1.1.2
 appVersion: latest
-kubeVersion: ">=1.16.0-0"
+kubeVersion: ">=1.22.0-0"
 keywords:
   - voyager
 home: https://github.com/tibuntu/helm-charts/tree/main/charts/voyager
