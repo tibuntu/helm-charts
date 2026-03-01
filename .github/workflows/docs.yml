@@ -1,0 +1,59 @@
+name: Update Docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "charts/**/Chart.yaml"
+      - "charts/**/values.yaml"
+      - "charts/**/*.gotmpl"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Run helm-docs
+        uses: losisin/helm-docs-github-action@v1
+        with:
+          chart-search-root: charts
+
+      - name: Update root README chart list
+        run: |
+          python3 << 'EOF'
+          import os, re, yaml
+
+          entries = []
+          for name in sorted(os.listdir("charts")):
+              path = f"charts/{name}/Chart.yaml"
+              if not os.path.isfile(path):
+                  continue
+              with open(path) as f:
+                  c = yaml.safe_load(f)
+              n = c.get("name", name)
+              d = c.get("description", "")
+              h = c.get("home", f"https://github.com/tibuntu/helm-charts/tree/main/charts/{name}")
+              entries.append(f"- [{n}]({h}) - {d}" if d else f"- [{n}]({h})")
+
+          new_list = "\n".join(entries)
+          with open("README.md") as f:
+              content = f.read()
+          updated = re.sub(r"(## Charts\n\n)((?:- .+\n)+)", rf"\g<1>{new_list}\n", content)
+          with open("README.md", "w") as f:
+              f.write(updated)
+          EOF
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add charts/*/README.md README.md
+          git diff --staged --quiet || git commit -m "docs: update helm-docs and chart list [skip ci]"
+          git push
