@@ -5,5 +5,3 @@ repos:
       - id: helm-docs
         args:
           - --chart-search-root=charts
-          - --template-files=./_templates.gotmpl
-          - --template-files=README.md.gotmpl
