@@ -1,0 +1,67 @@
+name: Remove Chart
+
+on:
+  workflow_dispatch:
+    inputs:
+      chart_name:
+        description: "Chart name(s) to remove from the index (comma-separated for multiple: jelu,unpoller)"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  remove:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v6
+        with:
+          ref: gh-pages
+
+      - name: Remove chart(s) from index.yaml
+        env:
+          CHART_NAMES: ${{ inputs.chart_name }}
+        run: |
+          python3 << 'EOF'
+          import os, yaml
+
+          charts = [c.strip() for c in os.environ["CHART_NAMES"].split(",")]
+
+          with open("index.yaml") as f:
+              index = yaml.safe_load(f)
+
+          for chart in charts:
+              if chart in index.get("entries", {}):
+                  del index["entries"][chart]
+                  print(f"Removed '{chart}' from index.yaml")
+              else:
+                  print(f"WARNING: '{chart}' not found in index.yaml")
+
+          with open("index.yaml", "w") as f:
+              yaml.dump(index, f, default_flow_style=False, sort_keys=False, allow_unicode=True)
+          EOF
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add index.yaml
+          git diff --staged --quiet || git commit -m "chore: remove ${{ inputs.chart_name }} from Helm index"
+          git push
+
+      - name: Delete GitHub Releases and tags
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CHART_NAMES: ${{ inputs.chart_name }}
+        run: |
+          for chart in $(echo "$CHART_NAMES" | tr ',' ' '); do
+            echo "Looking for releases matching '${chart}-'..."
+            gh release list --limit 200 --json tagName --jq '.[].tagName' \
+              | grep "^${chart}-" \
+              | while read -r tag; do
+                  echo "Deleting release and tag: $tag"
+                  gh release delete "$tag" --yes --cleanup-tag
+                done
+          done
