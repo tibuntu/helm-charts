@@ -3,6 +3,29 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: add extraEmptyDirs support for writable volume mounts
+        - kind: changed
+          description: require Kubernetes >= 1.22, drop legacy ingress API versions
+        - kind: fixed
+          description: PVC now uses fullname and standard labels helper
+        - kind: fixed
+          description: container name now uses release name instead of chart fullname
+    apiVersion: v2
+    created: "2026-03-01T19:41:08.307025762Z"
+    description: A Helm chart for generic applications
+    digest: a3782ea66b4d450c1885b1e8a145e1401d1f79a125e0834e6207b33839b46a9c
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.4.0/generic-0.4.0.tgz
+    version: 0.4.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: add support for persistent volume claim
     apiVersion: v2
@@ -269,6 +292,28 @@ entries:
   voyager:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: add extraEmptyDirs support for writable volume mounts
+        - kind: changed
+          description: require Kubernetes >= 1.22, drop legacy ingress API versions
+    apiVersion: v2
+    appVersion: latest
+    created: "2026-03-01T19:41:08.449308844Z"
+    description: A Helm chart for Voyager
+    digest: 8097dd5b91da8bf1ed5e360079dbd793f2a7f9f1e24cedf86104d2ad9878df68
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/voyager
+    keywords:
+    - voyager
+    kubeVersion: '>=1.22.0-0'
+    name: voyager
+    sources:
+    - https://github.com/aeharding/voyager
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.2.0/voyager-1.2.0.tgz
+    version: 1.2.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: Fix default cpu limits being too strict
     apiVersion: v2
@@ -375,4 +420,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2025-03-10T18:29:56.004861203Z"
+generated: "2026-03-01T19:41:08.449354931Z"
