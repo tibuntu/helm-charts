@@ -2,13 +2,36 @@ apiVersion: v1
 entries:
   generic:
   - annotations:
-      artifacthub.io/changes: "- kind: added\n  description: add extraEmptyDirs support\
-        \ for writable volume mounts\n- kind: changed\n  description: require Kubernetes\
-        \ >= 1.22, drop legacy ingress API versions\n- kind: fixed\n  description:\
-        \ PVC now uses fullname and standard labels helper\n- kind: fixed\n  description:\
-        \ container name now uses release name instead of chart fullname\n"
+      artifacthub.io/changes: |
+        - kind: added
+          description: add additionalPersistentVolumeClaims for creating and mounting extra PVCs
+        - kind: added
+          description: add additionalVolumes and additionalVolumeMounts for arbitrary volume types
     apiVersion: v2
-    created: '2026-03-01T19:41:08.307025762Z'
+    created: "2026-03-01T20:22:34.662387576Z"
+    description: A Helm chart for generic applications
+    digest: 7fb0f1566c2412a02d67d7ff481944f8d79a44879ee67a8ffa0be1b1cfdc6807
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.5.0/generic-0.5.0.tgz
+    version: 0.5.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
+          description: add extraEmptyDirs support for writable volume mounts
+        - kind: changed
+          description: require Kubernetes >= 1.22, drop legacy ingress API versions
+        - kind: fixed
+          description: PVC now uses fullname and standard labels helper
+        - kind: fixed
+          description: container name now uses release name instead of chart fullname
+    apiVersion: v2
+    created: "2026-03-01T19:41:08.307025762Z"
     description: A Helm chart for generic applications
     digest: a3782ea66b4d450c1885b1e8a145e1401d1f79a125e0834e6207b33839b46a9c
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -21,10 +44,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.4.0/generic-0.4.0.tgz
     version: 0.4.0
   - annotations:
-      artifacthub.io/changes: "- kind: changed\n  description: add support for persistent\
-        \ volume claim\n"
+      artifacthub.io/changes: |
+        - kind: changed
+          description: add support for persistent volume claim
     apiVersion: v2
-    created: '2025-03-10T18:29:56.004786384Z'
+    created: "2025-03-10T18:29:56.004786384Z"
     description: A Helm chart for generic applications
     digest: f46ecbcd88b89a99d62a01cc30f7c92b0012030edfc2a242d64375067d611555
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -36,10 +60,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.3.0/generic-0.3.0.tgz
     version: 0.3.0
   - annotations:
-      artifacthub.io/changes: "- kind: fixed\n  description: set initialDelaySeconds\
-        \ on proper spec\n"
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: set initialDelaySeconds on proper spec
     apiVersion: v2
-    created: '2025-03-02T08:08:46.386493825Z'
+    created: "2025-03-02T08:08:46.386493825Z"
     description: A Helm chart for generic applications
     digest: 63962aa82c57d165e68321ca419e8e38c4216f121416eb0d97b7d3bbff038d28
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -51,10 +76,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.2.2/generic-0.2.2.tgz
     version: 0.2.2
   - annotations:
-      artifacthub.io/changes: "- kind: fixed\n  description: do not longer set default\
-        \ resource requests/limits\n"
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: do not longer set default resource requests/limits
     apiVersion: v2
-    created: '2025-03-02T08:04:40.876428188Z'
+    created: "2025-03-02T08:04:40.876428188Z"
     description: A Helm chart for generic applications
     digest: 81060ed971f6bf520b93b29703aec36cc3dcbabd87cb36681ed635c3122eb714
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -66,10 +92,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.2.1/generic-0.2.1.tgz
     version: 0.2.1
   - annotations:
-      artifacthub.io/changes: "- kind: changed\n  description: add initialDelaySeconds\
-        \ to probes\n"
+      artifacthub.io/changes: |
+        - kind: changed
+          description: add initialDelaySeconds to probes
     apiVersion: v2
-    created: '2025-03-02T08:00:57.488907802Z'
+    created: "2025-03-02T08:00:57.488907802Z"
     description: A Helm chart for generic applications
     digest: ae453f1fe7ed25023ec485827a970b29f0a90d128eadc1fad92758a601a75cd1
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -81,10 +108,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.2.0/generic-0.2.0.tgz
     version: 0.2.0
   - annotations:
-      artifacthub.io/changes: "- kind: fixed\n  description: use helper function not\
-        \ values for container name\n"
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: use helper function not values for container name
     apiVersion: v2
-    created: '2025-03-02T07:57:35.575851372Z'
+    created: "2025-03-02T07:57:35.575851372Z"
     description: A Helm chart for generic applications
     digest: 878cb958b770b22d1828de9410f2202075c5c57a5ffcc5df2adbf40905c153e2
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -96,10 +124,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.1.1/generic-0.1.1.tgz
     version: 0.1.1
   - annotations:
-      artifacthub.io/changes: "- kind: changed\n  description: simplify container\
-        \ naming\n"
+      artifacthub.io/changes: |
+        - kind: changed
+          description: simplify container naming
     apiVersion: v2
-    created: '2025-03-02T07:56:10.627889902Z'
+    created: "2025-03-02T07:56:10.627889902Z"
     description: A Helm chart for generic applications
     digest: 7812b46c92ed60df9aada1672abdb46999d432bc3492d4bcce95d161f772ac14
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -111,10 +140,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.1.0/generic-0.1.0.tgz
     version: 0.1.0
   - annotations:
-      artifacthub.io/changes: "- kind: fixed\n  description: fix whitespace rendering\
-        \ when enabling probes\n"
+      artifacthub.io/changes: |
+        - kind: fixed
+          description: fix whitespace rendering when enabling probes
     apiVersion: v2
-    created: '2025-03-01T08:34:32.566676827Z'
+    created: "2025-03-01T08:34:32.566676827Z"
     description: A Helm chart for generic applications
     digest: 26e6d40e9bcf06ca8fb7801d439ad579af016fe20a1132969c3318ed7ff8cac7
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -126,10 +156,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.0.3/generic-0.0.3.tgz
     version: 0.0.3
   - annotations:
-      artifacthub.io/changes: "- kind: feat\n  description: add configuration for\
-        \ liveness & readiness probes\n"
+      artifacthub.io/changes: |
+        - kind: feat
+          description: add configuration for liveness & readiness probes
     apiVersion: v2
-    created: '2025-03-01T08:30:06.059799987Z'
+    created: "2025-03-01T08:30:06.059799987Z"
     description: A Helm chart for generic applications
     digest: f1ac920681abbc62b8ca1158cb90c54f8c128d74b9b60fff241e6823b661039d
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -141,9 +172,11 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/generic-0.0.2/generic-0.0.2.tgz
     version: 0.0.2
   - annotations:
-      artifacthub.io/changes: "- kind: feat\n  description: Initial release\n"
+      artifacthub.io/changes: |
+        - kind: feat
+          description: Initial release
     apiVersion: v2
-    created: '2025-03-01T07:54:27.441067786Z'
+    created: "2025-03-01T07:54:27.441067786Z"
     description: A Helm chart for generic applications
     digest: d345eb8c4ce2d269dbba1d581716208a32bef760058193a8ca86c04b4237a32d
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
@@ -156,12 +189,14 @@ entries:
     version: 0.0.1
   voyager:
   - annotations:
-      artifacthub.io/changes: "- kind: added\n  description: add extraEmptyDirs support\
-        \ for writable volume mounts\n- kind: changed\n  description: require Kubernetes\
-        \ >= 1.22, drop legacy ingress API versions\n"
+      artifacthub.io/changes: |
+        - kind: added
+          description: add extraEmptyDirs support for writable volume mounts
+        - kind: changed
+          description: require Kubernetes >= 1.22, drop legacy ingress API versions
     apiVersion: v2
     appVersion: latest
-    created: '2026-03-01T19:41:08.449308844Z'
+    created: "2026-03-01T19:41:08.449308844Z"
     description: A Helm chart for Voyager
     digest: 8097dd5b91da8bf1ed5e360079dbd793f2a7f9f1e24cedf86104d2ad9878df68
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/voyager
@@ -176,11 +211,12 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.2.0/voyager-1.2.0.tgz
     version: 1.2.0
   - annotations:
-      artifacthub.io/changes: "- kind: changed\n  description: Fix default cpu limits\
-        \ being too strict\n"
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Fix default cpu limits being too strict
     apiVersion: v2
     appVersion: latest
-    created: '2023-08-12T06:41:50.068444291Z'
+    created: "2023-08-12T06:41:50.068444291Z"
     description: A Helm chart for Voyager
     digest: 3b59ed84635db2fa4270f9b86b98ac069b093044e4ebe105c518f75a30501877
     home: https://github.com/tibuntu/helm-charts/tree/main/charts/voyager
@@ -195,11 +231,12 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.1.2/voyager-1.1.2.tgz
     version: 1.1.2
   - annotations:
-      artifacthub.io/changes: "- kind: changed\n  description: Fix default memory\
-        \ limits being too low\n"
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Fix default memory limits being too low
     apiVersion: v2
     appVersion: latest
-    created: '2023-08-06T10:20:22.211968294Z'
+    created: "2023-08-06T10:20:22.211968294Z"
     description: A Helm chart for Voyager
     digest: dda5fdd4709c4660ee3ab740783c52ddbdf88dd1a9a5dcf3120721ee15af6c82
     home: https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager
@@ -217,11 +254,12 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.1.1/voyager-1.1.1.tgz
     version: 1.1.1
   - annotations:
-      artifacthub.io/changes: "- kind: changed\n  description: Improve securityContext,\
-        \ resource requests and limits and README.md\n"
+      artifacthub.io/changes: |
+        - kind: changed
+          description: Improve securityContext, resource requests and limits and README.md
     apiVersion: v2
     appVersion: latest
-    created: '2023-08-06T10:11:35.08067408Z'
+    created: "2023-08-06T10:11:35.08067408Z"
     description: A Helm chart for Voyager
     digest: 409eff747a11b3f995b8fcfc5f7816def9b6255d21adb642c47ced9c71fb9fee
     home: https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager
@@ -239,10 +277,12 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.1.0/voyager-1.1.0.tgz
     version: 1.1.0
   - annotations:
-      artifacthub.io/changes: "- kind: added\n  description: Enrich chart metadata\n"
+      artifacthub.io/changes: |
+        - kind: added
+          description: Enrich chart metadata
     apiVersion: v2
     appVersion: latest
-    created: '2023-08-06T09:49:16.472306827Z'
+    created: "2023-08-06T09:49:16.472306827Z"
     description: A Helm chart for Voyager
     digest: cbf65fa32772e7464504ce8e66ee02a6f7af26c1528919ca87d10301c821c9a4
     home: https://github.com/tibuntu/helm-chartscharts/tree/main/charts/voyager
@@ -261,7 +301,7 @@ entries:
     version: 1.0.2
   - apiVersion: v2
     appVersion: latest
-    created: '2023-08-06T08:57:34.799678691Z'
+    created: "2023-08-06T08:57:34.799678691Z"
     description: A Helm chart for Voyager
     digest: 22c164da8aacd1025f5e958059b1400dc955dd73fb18e8d14f18c653a25e7f8e
     name: voyager
@@ -270,7 +310,7 @@ entries:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.1/voyager-1.0.1.tgz
     version: 1.0.1
   - apiVersion: v2
-    created: '2023-08-06T08:23:54.002014934Z'
+    created: "2023-08-06T08:23:54.002014934Z"
     description: A Helm chart for Voyager
     digest: 7fbdcdae07e939f9b8a689c5207e6b701c61120333a4d3120cfaf8deae918ed7
     name: voyager
@@ -278,4 +318,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: '2026-03-01T19:41:08.449354931Z'
+generated: "2026-03-01T20:22:34.792334274Z"
