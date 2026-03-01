@@ -1,6 +1,6 @@
 # generic
 
-![Version: 0.4.0](https://img.shields.io/badge/Version-0.4.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.5.0](https://img.shields.io/badge/Version-0.5.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A Helm chart for generic applications
 
@@ -14,6 +14,9 @@ Kubernetes: `>=1.22.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| additionalPersistentVolumeClaims | list | `[]` |  |
+| additionalVolumeMounts | list | `[]` |  |
+| additionalVolumes | list | `[]` |  |
 | affinity | object | `{}` |  |
 | environment | object | `{}` | Set custom environment variables |
 | extraEmptyDirs | list | `[]` |  |
