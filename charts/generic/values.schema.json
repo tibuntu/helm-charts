@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "Generic chart values",
+  "type": "object",
+  "required": ["image"],
+  "properties": {
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "registry": {
+          "type": ["string", "null"],
+          "description": "Container registry host. Must be set by the user; combined with repository as registry/repository:tag."
+        },
+        "repository": {
+          "type": ["string", "null"],
+          "description": "Image repository. Must be set by the user."
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": ["Always", "IfNotPresent", "Never"]
+        },
+        "tag": {
+          "type": "string"
+        }
+      }
+    },
+    "environment": {
+      "type": ["array", "object"],
+      "description": "List of {name, value} env vars (kept permissive as {} to match defaults).",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {"type": "string"},
+          "value": {"type": ["string", "number", "boolean"]},
+          "valueFrom": {"type": "object"}
+        }
+      }
+    },
+    "imagePullSecrets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {"name": {"type": "string"}}
+      }
+    },
+    "nameOverride": {"type": "string"},
+    "fullnameOverride": {"type": "string"},
+    "serviceAccount": {
+      "type": "object",
+      "properties": {
+        "create": {"type": "boolean"},
+        "annotations": {"type": "object"},
+        "name": {"type": "string"}
+      }
+    },
+    "podAnnotations": {"type": "object"},
+    "podSecurityContext": {"type": "object"},
+    "securityContext": {"type": "object"},
+    "livenessProbe": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "initialDelaySeconds": {"type": "integer", "minimum": 0},
+        "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+        "path": {"type": "string"}
+      }
+    },
+    "readinessProbe": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "initialDelaySeconds": {"type": "integer", "minimum": 0},
+        "port": {"type": "integer", "minimum": 1, "maximum": 65535},
+        "path": {"type": "string"}
+      }
+    },
+    "service": {
+      "type": "object",
+      "required": ["type", "port"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"]
+        },
+        "port": {"type": "integer", "minimum": 1, "maximum": 65535}
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "className": {"type": "string"},
+        "annotations": {"type": "object"},
+        "hosts": {"type": "array"},
+        "tls": {"type": "array"}
+      }
+    },
+    "resources": {"type": "object"},
+    "nodeSelector": {"type": "object"},
+    "tolerations": {"type": "array"},
+    "affinity": {"type": "object"},
+    "persistence": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "name": {"type": "string"},
+        "size": {"type": "string"},
+        "accessMode": {
+          "type": "string",
+          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany", "ReadWriteOncePod"]
+        },
+        "storageClass": {"type": "string"},
+        "mountPath": {"type": "string"}
+      }
+    },
+    "extraEmptyDirs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "mountPath"],
+        "properties": {
+          "name": {"type": "string"},
+          "mountPath": {"type": "string"}
+        }
+      }
+    },
+    "additionalPersistentVolumeClaims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "size", "mountPath"],
+        "properties": {
+          "name": {"type": "string"},
+          "size": {"type": "string"},
+          "accessMode": {
+            "type": "string",
+            "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany", "ReadWriteOncePod"]
+          },
+          "storageClass": {"type": "string"},
+          "mountPath": {"type": "string"}
+        }
+      }
+    },
+    "additionalVolumes": {"type": "array"},
+    "additionalVolumeMounts": {"type": "array"}
+  }
+}
