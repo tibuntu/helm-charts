@@ -5,5 +5,19 @@
   ],
   "pre-commit": {
     "enabled": true
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update container image tags in chart values.yaml (registry/repository/tag block)",
+      "managerFilePatterns": [
+        "/charts/[^/]+/values\\.yaml$/"
+      ],
+      "matchStrings": [
+        "registry:\\s*(?<registry>[^\\s#]+)\\s*\\n\\s*repository:\\s*(?<depName>[^\\s#]+)(?:\\s*\\n\\s*[^\\n]*)*?\\s*\\n\\s*tag:\\s*[\"']?(?<currentValue>[^\"'\\s#]+)[\"']?"
+      ],
+      "datasourceTemplate": "docker",
+      "registryUrlTemplate": "https://{{registry}}"
+    }
+  ]
 }
