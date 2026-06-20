@@ -4,6 +4,25 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: add ingress.defaultBackend to set a catch-all backend pointing at any service (e.g. Tailscale funnel)
+        - kind: changed
+          description: make ingress.tls secretName optional and only render ingress rules when hosts are set
+    apiVersion: v2
+    created: "2026-06-20T04:50:25.846533995Z"
+    description: A Helm chart for generic applications
+    digest: e5eb1778b97cf36bd8c4fd702d04fad055df9df0e9c2b1ab0ea1b92cc2f61d0b
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.6.0/generic-0.6.0.tgz
+    version: 0.6.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: add additionalPersistentVolumeClaims for creating and mounting extra PVCs
         - kind: added
           description: add additionalVolumes and additionalVolumeMounts for arbitrary volume types
@@ -318,4 +337,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-03-01T20:22:34.792334274Z"
+generated: "2026-06-20T04:50:26.018047382Z"
