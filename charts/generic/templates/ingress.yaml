@@ -22,9 +22,19 @@ spec:
         {{- range .hosts }}
         - {{ . | quote }}
         {{- end }}
-      secretName: {{ .secretName }}
+      {{- with .secretName }}
+      secretName: {{ . }}
+      {{- end }}
     {{- end }}
   {{- end }}
+  {{- with .Values.ingress.defaultBackend }}
+  defaultBackend:
+    service:
+      name: {{ .service.name }}
+      port:
+        {{- toYaml .service.port | nindent 8 }}
+  {{- end }}
+  {{- if .Values.ingress.hosts }}
   rules:
     {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
@@ -40,4 +50,5 @@ spec:
                   number: {{ $svcPort }}
           {{- end }}
     {{- end }}
+  {{- end }}
 {{- end }}

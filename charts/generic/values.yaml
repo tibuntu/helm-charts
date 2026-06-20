@@ -55,15 +55,22 @@ ingress:
   enabled: false
   className: ""
   annotations: {}
+  # Optional catch-all backend. Useful for e.g. Tailscale funnel ingresses,
+  # and may point at any service (not just this chart's own service).
+  # defaultBackend:
+  #   service:
+  #     name: argocd-server
+  #     port:
+  #       number: 80      # or use a named port: `name: webhook`
   hosts:
     - host: my-subdomain.my-domain.com
       paths:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
+  #  - hosts:
   #      - chart-example.local
+  #    secretName: chart-example-tls   # optional (omit for e.g. Tailscale)
 
 resources:
   requests: {}
