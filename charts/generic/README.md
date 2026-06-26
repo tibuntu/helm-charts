@@ -1,6 +1,6 @@
 # generic
 
-![Version: 0.6.0](https://img.shields.io/badge/Version-0.6.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A Helm chart for generic applications
 
@@ -64,6 +64,7 @@ Kubernetes: `>=1.22.0-0`
 | serviceAccount.annotations | object | `{}` |  |
 | serviceAccount.create | bool | `true` |  |
 | serviceAccount.name | string | `""` |  |
+| strategy | object | `{}` | Deployment update strategy. Leave empty to use the Kubernetes default (RollingUpdate). Set `type: Recreate` to terminate all existing pods before creating new ones — useful for workloads backed by a ReadWriteOnce volume. |
 | tolerations | list | `[]` |  |
 
 ----------------------------------------------

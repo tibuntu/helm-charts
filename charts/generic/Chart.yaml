@@ -4,7 +4,7 @@ name: generic
 description: A Helm chart for generic applications
 type: application
 kubeVersion: ">=1.22.0-0"
-version: 0.6.0
+version: 0.7.0
 appVersion: ""
 keywords:
   - generic
@@ -13,6 +13,4 @@ dependencies: []
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: add ingress.defaultBackend to set a catch-all backend pointing at any service (e.g. Tailscale funnel)
-    - kind: changed
-      description: make ingress.tls secretName optional and only render ingress rules when hosts are set
+      description: add strategy value to configure the Deployment update strategy (e.g. type Recreate)
