@@ -4,6 +4,23 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: add strategy value to configure the Deployment update strategy (e.g. type Recreate)
+    apiVersion: v2
+    created: "2026-06-26T05:49:29.662209685Z"
+    description: A Helm chart for generic applications
+    digest: 4a2edf11f61a15882a638ce4b3e6358972dd604f60aa14142f5b9fbcde410b26
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.7.0/generic-0.7.0.tgz
+    version: 0.7.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: add ingress.defaultBackend to set a catch-all backend pointing at any service (e.g. Tailscale funnel)
         - kind: changed
           description: make ingress.tls secretName optional and only render ingress rules when hosts are set
@@ -337,4 +354,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-06-20T04:50:26.018047382Z"
+generated: "2026-06-26T05:49:29.662636752Z"
