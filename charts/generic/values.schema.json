@@ -116,6 +116,7 @@
     },
     "resources": {"type": "object"},
     "nodeSelector": {"type": "object"},
+    "priorityClassName": {"type": "string"},
     "tolerations": {"type": "array"},
     "affinity": {"type": "object"},
     "persistence": {

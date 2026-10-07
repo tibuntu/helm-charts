@@ -99,6 +99,9 @@ resources:
 
 nodeSelector: {}
 
+# -- PriorityClass for the pod, e.g. so a pod pinned to one node can preempt others
+priorityClassName: ""
+
 tolerations: []
 
 affinity: {}

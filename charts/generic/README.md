@@ -1,6 +1,6 @@
 # generic
 
-![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.9.0](https://img.shields.io/badge/Version-0.9.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A Helm chart for generic applications
 
@@ -49,6 +49,7 @@ Kubernetes: `>=1.22.0-0`
 | persistence.storageClass | string | `""` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext.fsGroup | int | `911` |  |
+| priorityClassName | string | `""` | PriorityClass for the pod, e.g. so a pod pinned to one node can preempt others |
 | readinessProbe.enabled | bool | `false` |  |
 | readinessProbe.initialDelaySeconds | int | `10` |  |
 | readinessProbe.path | string | `"/"` |  |
