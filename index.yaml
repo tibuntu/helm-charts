@@ -4,6 +4,23 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: add priorityClassName value
+    apiVersion: v2
+    created: "2026-10-07T10:55:07.767310276Z"
+    description: A Helm chart for generic applications
+    digest: 79ad5ccd9b1f609ecc57905c3e2c01fdd6af68e9e479a26e6bfdf6b71b332a04
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.9.0/generic-0.9.0.tgz
+    version: 0.9.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: add command and args values to override the container entrypoint and CMD
     apiVersion: v2
     created: "2026-10-07T10:33:29.317215343Z"
@@ -371,4 +388,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-10-07T10:33:29.317270225Z"
+generated: "2026-10-07T10:55:07.76734595Z"
