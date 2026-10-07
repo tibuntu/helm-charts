@@ -28,6 +28,16 @@
         }
       }
     },
+    "command": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Overrides the image ENTRYPOINT."
+    },
+    "args": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Overrides the image CMD."
+    },
     "environment": {
       "type": ["array", "object"],
       "description": "List of {name, value} env vars (kept permissive as {} to match defaults).",

@@ -4,7 +4,7 @@ name: generic
 description: A Helm chart for generic applications
 type: application
 kubeVersion: ">=1.22.0-0"
-version: 0.7.0
+version: 0.8.0
 appVersion: ""
 keywords:
   - generic
@@ -13,4 +13,4 @@ dependencies: []
 annotations:
   artifacthub.io/changes: |
     - kind: added
-      description: add strategy value to configure the Deployment update strategy (e.g. type Recreate)
+      description: add command and args values to override the container entrypoint and CMD

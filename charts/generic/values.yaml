@@ -19,6 +19,15 @@ image:
   pullPolicy: IfNotPresent
   tag: latest
 
+# -- Override the image ENTRYPOINT. Leave empty to keep the image default.
+command: []
+
+# -- Override the image CMD. Leave empty to keep the image default. Set this
+# (not `command`) to run another process through the image's entrypoint script,
+# e.g. a background worker sharing the image of a web app.
+args: []
+# args: ["bundle", "exec", "sidekiq"]
+
 # -- Set custom environment variables
 environment: {}
 # - name: MY_ENV_VAR

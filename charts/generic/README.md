@@ -1,6 +1,6 @@
 # generic
 
-![Version: 0.7.0](https://img.shields.io/badge/Version-0.7.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.8.0](https://img.shields.io/badge/Version-0.8.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A Helm chart for generic applications
 
@@ -18,6 +18,8 @@ Kubernetes: `>=1.22.0-0`
 | additionalVolumeMounts | list | `[]` |  |
 | additionalVolumes | list | `[]` |  |
 | affinity | object | `{}` |  |
+| args | list | `[]` | Override the image CMD. Leave empty to keep the image default. Set this (not `command`) to run another process through the image's entrypoint script, e.g. a background worker sharing the image of a web app. |
+| command | list | `[]` | Override the image ENTRYPOINT. Leave empty to keep the image default. |
 | environment | object | `{}` | Set custom environment variables |
 | extraEmptyDirs | list | `[]` |  |
 | fullnameOverride | string | `""` |  |
