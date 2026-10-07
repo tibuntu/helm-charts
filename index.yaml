@@ -4,6 +4,23 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: add command and args values to override the container entrypoint and CMD
+    apiVersion: v2
+    created: "2026-10-07T10:33:29.317215343Z"
+    description: A Helm chart for generic applications
+    digest: 63391ffab2ffaafb83d9de0c694c46cbd3698ac274a5bc7ee5c38da959006fcf
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    name: generic
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.8.0/generic-0.8.0.tgz
+    version: 0.8.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: add strategy value to configure the Deployment update strategy (e.g. type Recreate)
     apiVersion: v2
     created: "2026-06-26T05:49:29.662209685Z"
@@ -354,4 +371,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-06-26T05:49:29.662636752Z"
+generated: "2026-10-07T10:33:29.317270225Z"
