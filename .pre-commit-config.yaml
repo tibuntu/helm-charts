@@ -16,7 +16,7 @@ repos:
         args: ["-c", ".yamllint"]
 
   - repo: https://github.com/norwoodj/helm-docs
-    rev: v1.14.2
+    rev: 19.0614
     hooks:
       - id: helm-docs
         args:
