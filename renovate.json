@@ -3,18 +3,30 @@
   "extends": [
     "github>tibuntu/renovate-presets"
   ],
+  "ignorePaths": [],
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Update container image tags in chart values.yaml (registry/repository/tag block)",
+      "description": "Update the test image in chart CI values (registry/repository/tag block)",
       "managerFilePatterns": [
-        "/charts/[^/]+/values\\.yaml$/"
+        "/charts/[^/]+/ci/[^/]+-values\\.yaml$/"
       ],
       "matchStrings": [
         "registry:\\s*(?<registry>[^\\s#]+)\\s*\\n\\s*repository:\\s*(?<depName>[^\\s#]+)(?:\\s*\\n\\s*[^\\n]*)*?\\s*\\n\\s*tag:\\s*[\"']?(?<currentValue>[^\"'\\s#]+)[\"']?"
       ],
       "datasourceTemplate": "docker",
       "registryUrlTemplate": "https://{{registry}}"
+    },
+    {
+      "customType": "regex",
+      "description": "Update the pinned busybox image in the chart test pods",
+      "managerFilePatterns": [
+        "/charts/[^/]+/templates/tests/[^/]+\\.yaml$/"
+      ],
+      "matchStrings": [
+        "image:\\s*(?<depName>busybox):(?<currentValue>[^\\s\"']+)"
+      ],
+      "datasourceTemplate": "docker"
     }
   ]
 }
