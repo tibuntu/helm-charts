@@ -58,8 +58,8 @@ fullnameOverride: ""
 serviceAccount:
   # -- Create a ServiceAccount; when false the pod uses `name` or the namespace `default` account
   create: true
-  # -- Mount the service account token into the pod (`automountServiceAccountToken`); set to false if the workload does not call the Kubernetes API
-  automount: true
+  # -- Mount the service account token into the pod (`automountServiceAccountToken`); set to true if the workload calls the Kubernetes API
+  automount: false
   # -- Annotations for the ServiceAccount (e.g. IAM role bindings); only used when `create` is true
   annotations: {}
   # -- ServiceAccount name; defaults to the full resource name when `create` is true, otherwise to `default`

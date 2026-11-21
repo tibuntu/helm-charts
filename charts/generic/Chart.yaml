@@ -4,7 +4,7 @@ name: generic
 description: A Helm chart for generic applications
 type: application
 kubeVersion: ">=1.22.0-0"
-version: 0.10.1
+version: 0.11.0
 appVersion: ""
 keywords:
   - generic
@@ -18,7 +18,5 @@ dependencies: []
 annotations:
   artifacthub.io/license: Apache-2.0
   artifacthub.io/changes: |
-    - kind: added
-      description: publish the chart to the OCI registry ghcr.io/tibuntu/charts and document installing from it
-    - kind: added
-      description: GitHub Releases carry these changes as release notes
+    - kind: changed
+      description: serviceAccount.automount now defaults to false, so the service account token is no longer mounted into the pod; set serviceAccount.automount=true if the workload calls the Kubernetes API

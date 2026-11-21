@@ -1,6 +1,6 @@
 # generic
 
-![Version: 0.10.1](https://img.shields.io/badge/Version-0.10.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.11.0](https://img.shields.io/badge/Version-0.11.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A Helm chart for generic applications
 
@@ -19,7 +19,7 @@ helm install my-app tibuntu/generic \
 The chart is also published as an OCI artifact; no `helm repo add` needed:
 
 ```bash
-helm install my-app oci://ghcr.io/tibuntu/charts/generic --version 0.10.1 \
+helm install my-app oci://ghcr.io/tibuntu/charts/generic --version 0.11.0 \
   --set image.registry=docker.io \
   --set image.repository=traefik/whoami \
   --set image.tag=v1.12.0
@@ -96,7 +96,7 @@ Kubernetes: `>=1.22.0-0`
 | service.port | int | `5314` | Service port; also the container port unless `containerPort` is set |
 | service.type | string | `"ClusterIP"` | Service type (ClusterIP, NodePort or LoadBalancer) |
 | serviceAccount.annotations | object | `{}` | Annotations for the ServiceAccount (e.g. IAM role bindings); only used when `create` is true |
-| serviceAccount.automount | bool | `true` | Mount the service account token into the pod (`automountServiceAccountToken`); set to false if the workload does not call the Kubernetes API |
+| serviceAccount.automount | bool | `false` | Mount the service account token into the pod (`automountServiceAccountToken`); set to true if the workload calls the Kubernetes API |
 | serviceAccount.create | bool | `true` | Create a ServiceAccount; when false the pod uses `name` or the namespace `default` account |
 | serviceAccount.name | string | `""` | ServiceAccount name; defaults to the full resource name when `create` is true, otherwise to `default` |
 | startupProbe | object | `{"enabled":false,"initialDelaySeconds":10,"path":"/","port":"http"}` | Startup probe, httpGet; any other probe field (periodSeconds, ...) is passed through |
