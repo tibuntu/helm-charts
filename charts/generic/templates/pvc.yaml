@@ -1,10 +1,14 @@
-{{- if .Values.persistence.enabled }}
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Values.persistence.name | default (printf "%s-pvc" (include "generic.fullname" .)) }}
+  name: {{ include "generic.pvcName" . }}
   labels:
     {{- include "generic.labels" . | nindent 4 }}
+  {{- with .Values.persistence.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessMode | default "ReadWriteOnce" }}
@@ -23,6 +27,10 @@ metadata:
   name: {{ printf "%s-%s" (include "generic.fullname" $) .name }}
   labels:
     {{- include "generic.labels" $ | nindent 4 }}
+  {{- with .annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   accessModes:
     - {{ .accessMode | default "ReadWriteOnce" }}

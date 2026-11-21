@@ -2,7 +2,9 @@
   "$schema": "https://json-schema.org/draft-07/schema#",
   "title": "Generic chart values",
   "type": "object",
-  "required": ["image"],
+  "required": [
+    "image"
+  ],
   "properties": {
     "replicaCount": {
       "type": "integer",
@@ -12,157 +14,478 @@
       "type": "object",
       "properties": {
         "registry": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Container registry host. Must be set by the user; combined with repository as registry/repository:tag."
         },
         "repository": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Image repository. Must be set by the user."
         },
         "pullPolicy": {
           "type": "string",
-          "enum": ["Always", "IfNotPresent", "Never"]
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ]
         },
         "tag": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "command": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Overrides the image ENTRYPOINT."
     },
     "args": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Overrides the image CMD."
     },
     "environment": {
-      "type": ["array", "object"],
-      "description": "List of {name, value} env vars (kept permissive as {} to match defaults).",
-      "items": {
-        "type": "object",
-        "required": ["name"],
-        "properties": {
-          "name": {"type": "string"},
-          "value": {"type": ["string", "number", "boolean"]},
-          "valueFrom": {"type": "object"}
+      "description": "List of Kubernetes env vars ({name, value | valueFrom}). An empty map is still accepted for values files copied from the old default.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number",
+                  "boolean"
+                ]
+              },
+              "valueFrom": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "maxProperties": 0
         }
+      ]
+    },
+    "envFrom": {
+      "type": "array",
+      "description": "Kubernetes envFrom sources (configMapRef / secretRef, optional prefix).",
+      "items": {
+        "type": "object"
       }
     },
     "imagePullSecrets": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name"],
-        "properties": {"name": {"type": "string"}}
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
       }
     },
-    "nameOverride": {"type": "string"},
-    "fullnameOverride": {"type": "string"},
+    "nameOverride": {
+      "type": "string"
+    },
+    "fullnameOverride": {
+      "type": "string"
+    },
+    "containerPort": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        {
+          "const": ""
+        }
+      ]
+    },
     "serviceAccount": {
       "type": "object",
       "properties": {
-        "create": {"type": "boolean"},
-        "annotations": {"type": "object"},
-        "name": {"type": "string"}
-      }
+        "create": {
+          "type": "boolean"
+        },
+        "automount": {
+          "type": "boolean"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
-    "podAnnotations": {"type": "object"},
-    "podSecurityContext": {"type": "object"},
-    "securityContext": {"type": "object"},
+    "podAnnotations": {
+      "type": "object"
+    },
+    "podSecurityContext": {
+      "type": "object"
+    },
+    "securityContext": {
+      "type": "object"
+    },
     "livenessProbe": {
       "type": "object",
-      "required": ["enabled"],
+      "required": [
+        "enabled"
+      ],
       "properties": {
-        "enabled": {"type": "boolean"},
-        "initialDelaySeconds": {"type": "integer", "minimum": 0},
-        "port": {"type": "integer", "minimum": 1, "maximum": 65535},
-        "path": {"type": "string"}
-      }
+        "enabled": {
+          "type": "boolean"
+        },
+        "initialDelaySeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "periodSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "successThreshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "failureThreshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "terminationGracePeriodSeconds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
     },
     "readinessProbe": {
       "type": "object",
-      "required": ["enabled"],
+      "required": [
+        "enabled"
+      ],
       "properties": {
-        "enabled": {"type": "boolean"},
-        "initialDelaySeconds": {"type": "integer", "minimum": 0},
-        "port": {"type": "integer", "minimum": 1, "maximum": 65535},
-        "path": {"type": "string"}
-      }
+        "enabled": {
+          "type": "boolean"
+        },
+        "initialDelaySeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "periodSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "successThreshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "failureThreshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "terminationGracePeriodSeconds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "startupProbe": {
+      "type": "object",
+      "required": [
+        "enabled"
+      ],
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "initialDelaySeconds": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "port": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 65535
+            },
+            {
+              "type": "string",
+              "minLength": 1
+            }
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "periodSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "timeoutSeconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "successThreshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "failureThreshold": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "terminationGracePeriodSeconds": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
     },
     "service": {
       "type": "object",
-      "required": ["type", "port"],
+      "required": [
+        "type",
+        "port"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["ClusterIP", "NodePort", "LoadBalancer", "ExternalName"]
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer"
+          ]
         },
-        "port": {"type": "integer", "minimum": 1, "maximum": 65535}
-      }
+        "port": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 65535
+        },
+        "annotations": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
     },
     "ingress": {
       "type": "object",
-      "required": ["enabled"],
+      "required": [
+        "enabled"
+      ],
       "properties": {
-        "enabled": {"type": "boolean"},
-        "className": {"type": "string"},
-        "annotations": {"type": "object"},
-        "hosts": {"type": "array"},
-        "tls": {"type": "array"}
-      }
+        "enabled": {
+          "type": "boolean"
+        },
+        "className": {
+          "type": "string"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "hosts": {
+          "type": "array"
+        },
+        "tls": {
+          "type": "array"
+        },
+        "defaultBackend": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
     },
-    "resources": {"type": "object"},
-    "nodeSelector": {"type": "object"},
-    "priorityClassName": {"type": "string"},
-    "tolerations": {"type": "array"},
-    "affinity": {"type": "object"},
+    "resources": {
+      "type": "object"
+    },
+    "nodeSelector": {
+      "type": "object"
+    },
+    "priorityClassName": {
+      "type": "string"
+    },
+    "tolerations": {
+      "type": "array"
+    },
+    "affinity": {
+      "type": "object"
+    },
     "persistence": {
       "type": "object",
-      "required": ["enabled"],
+      "required": [
+        "enabled"
+      ],
       "properties": {
-        "enabled": {"type": "boolean"},
-        "name": {"type": "string"},
-        "size": {"type": "string"},
+        "enabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "existingClaim": {
+          "type": "string"
+        },
+        "annotations": {
+          "type": "object"
+        },
+        "size": {
+          "type": "string"
+        },
         "accessMode": {
           "type": "string",
-          "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany", "ReadWriteOncePod"]
+          "enum": [
+            "ReadWriteOnce",
+            "ReadOnlyMany",
+            "ReadWriteMany",
+            "ReadWriteOncePod"
+          ]
         },
-        "storageClass": {"type": "string"},
-        "mountPath": {"type": "string"}
-      }
+        "storageClass": {
+          "type": "string"
+        },
+        "mountPath": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     },
     "extraEmptyDirs": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "mountPath"],
+        "required": [
+          "name",
+          "mountPath"
+        ],
         "properties": {
-          "name": {"type": "string"},
-          "mountPath": {"type": "string"}
-        }
+          "name": {
+            "type": "string"
+          },
+          "mountPath": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
       }
     },
     "additionalPersistentVolumeClaims": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "size", "mountPath"],
+        "required": [
+          "name",
+          "size",
+          "mountPath"
+        ],
         "properties": {
-          "name": {"type": "string"},
-          "size": {"type": "string"},
+          "name": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
           "accessMode": {
             "type": "string",
-            "enum": ["ReadWriteOnce", "ReadOnlyMany", "ReadWriteMany", "ReadWriteOncePod"]
+            "enum": [
+              "ReadWriteOnce",
+              "ReadOnlyMany",
+              "ReadWriteMany",
+              "ReadWriteOncePod"
+            ]
           },
-          "storageClass": {"type": "string"},
-          "mountPath": {"type": "string"}
-        }
+          "storageClass": {
+            "type": "string"
+          },
+          "mountPath": {
+            "type": "string"
+          },
+          "annotations": {
+            "type": "object"
+          }
+        },
+        "additionalProperties": false
       }
     },
-    "additionalVolumes": {"type": "array"},
-    "additionalVolumeMounts": {"type": "array"}
-  }
+    "additionalVolumes": {
+      "type": "array"
+    },
+    "additionalVolumeMounts": {
+      "type": "array"
+    },
+    "global": {
+      "type": "object"
+    },
+    "strategy": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
 }

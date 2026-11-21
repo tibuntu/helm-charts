@@ -1,0 +1,60 @@
+image:
+  registry: docker.io
+  repository: traefik/whoami
+  tag: v1.12.0
+args: ["--port=8080"]
+containerPort: 8080
+service:
+  port: 80
+  annotations:
+    example.com/ci: "true"
+strategy:
+  type: Recreate
+environment:
+  - name: FOO
+    value: bar
+envFrom:
+  - configMapRef:
+      name: generic-ci-optional
+      optional: true
+livenessProbe:
+  enabled: true
+  port: 8080
+  periodSeconds: 5
+readinessProbe:
+  enabled: true
+startupProbe:
+  enabled: true
+  failureThreshold: 30
+ingress:
+  enabled: true
+  className: nginx
+  tls:
+    - hosts:
+        - my-subdomain.my-domain.com
+      secretName: chart-example-tls
+  defaultBackend:
+    service:
+      name: generic-ci
+      port:
+        number: 80
+persistence:
+  enabled: true
+  annotations:
+    helm.sh/resource-policy: keep
+extraEmptyDirs:
+  - name: tmp
+    mountPath: /tmp
+additionalPersistentVolumeClaims:
+  - name: media
+    size: 1Gi
+    accessMode: ReadWriteOnce
+    mountPath: /media
+    annotations:
+      helm.sh/resource-policy: keep
+additionalVolumes:
+  - name: scratch
+    emptyDir: {}
+additionalVolumeMounts:
+  - name: scratch
+    mountPath: /scratch

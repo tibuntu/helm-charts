@@ -1,0 +1,11 @@
+.git/
+.gitignore
+.svn/
+.hg/
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+ci/

@@ -51,6 +51,13 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Name of the main PVC mounted at persistence.mountPath
+*/}}
+{{- define "generic.pvcName" -}}
+{{- .Values.persistence.existingClaim | default .Values.persistence.name | default (printf "%s-pvc" (include "generic.fullname" .)) }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "generic.serviceAccountName" -}}
@@ -58,5 +65,17 @@ Create the name of the service account to use
 {{- default (include "generic.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
+{{- end }}
+{{- end }}
+
+{{/*
+Render an httpGet probe; every other field (periodSeconds, ...) passes through
+*/}}
+{{- define "generic.probe" -}}
+httpGet:
+  path: {{ .path }}
+  port: {{ .port }}
+{{- with omit . "enabled" "path" "port" }}
+{{ toYaml . }}
 {{- end }}
 {{- end }}
