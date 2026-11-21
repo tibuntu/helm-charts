@@ -1,0 +1,5 @@
+chart-dirs:
+  - charts
+target-branch: main
+# Share yamllint rules with the pre-commit hook instead of ct's built-in lintconf.
+lint-conf: .yamllint

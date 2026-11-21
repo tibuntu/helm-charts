@@ -5,6 +5,21 @@ on:
     paths:
       - 'charts/**'
       - '.github/workflows/ct.yml'
+      - 'ct.yaml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'charts/**'
+      - '.github/workflows/ct.yml'
+      - 'ct.yaml'
+  workflow_dispatch:
+  # Called by helm.yml before a release. github.event_name is the caller's
+  # event (push), so the "Select charts" step takes the all-charts path.
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
   chart-testing:
@@ -29,22 +44,36 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@720270857a28afd41e2426521a7801db09e9b510 # v2.9.0
 
-      - name: Run chart-testing (list-changed)
-        id: list-changed
+      # Pull requests test the charts changed against target-branch (ct.yaml).
+      # push and workflow_dispatch have no target branch to diff against,
+      # so they test every chart and skip the version-increment check
+      # (it always fails on the default branch itself).
+      - name: Select charts to test
+        id: select
+        env:
+          EVENT: ${{ github.event_name }}
         run: |
-          changed=$(ct list-changed --target-branch ${{ github.event.repository.default_branch }})
-          if [[ -n "$changed" ]]; then
-            echo "changed=true" >> "$GITHUB_OUTPUT"
+          if [[ "$EVENT" == "pull_request" ]]; then
+            changed=$(ct list-changed)
+            if [[ -n "$changed" ]]; then
+              echo "changed=true" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            {
+              echo "changed=true"
+              echo "lint_args=--all --check-version-increment=false"
+              echo "install_args=--all"
+            } >> "$GITHUB_OUTPUT"
           fi
 
       - name: Run chart-testing (lint)
-        if: steps.list-changed.outputs.changed == 'true'
-        run: ct lint --target-branch ${{ github.event.repository.default_branch }}
+        if: steps.select.outputs.changed == 'true'
+        run: ct lint ${{ steps.select.outputs.lint_args }}
 
       - name: Create kind cluster
-        if: steps.list-changed.outputs.changed == 'true'
+        if: steps.select.outputs.changed == 'true'
         uses: helm/kind-action@ea822c7bf1874f08e5a491df991c228edffc3376 # v1.15.2
 
       - name: Run chart-testing (install)
-        if: steps.list-changed.outputs.changed == 'true'
-        run: ct install --target-branch ${{ github.event.repository.default_branch }}
+        if: steps.select.outputs.changed == 'true'
+        run: ct install ${{ steps.select.outputs.install_args }}
