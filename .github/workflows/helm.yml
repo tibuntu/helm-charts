@@ -33,10 +33,20 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
+      # cr uses RELEASE-NOTES.md from the chart package as the GitHub Release body
+      # (cr.yaml); without it the body is just the chart description.
+      - name: Write release notes from artifacthub.io/changes
+        run: |
+          for chart in charts/*/; do
+            yq '.annotations["artifacthub.io/changes"] // "[]" | from_yaml | .[] | "- **" + .kind + "**: " + .description' \
+              "${chart}Chart.yaml" > "${chart}RELEASE-NOTES.md"
+          done
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@92c6b97fa9f664492a2592e0d1d80bc6bf378957 # v1.9.0
         with:
           charts_dir: charts/
+          config: cr.yaml
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
