@@ -1,4 +1,5 @@
 ---
+# -- Number of pod replicas of the Deployment
 replicaCount: 1
 
 # -- Deployment update strategy. Leave empty to use the Kubernetes default
@@ -14,9 +15,13 @@ strategy: {}
 #     maxUnavailable: 0
 
 image:
+  # -- Image registry host, e.g. `docker.io`. Required: rendering fails when unset
   registry: ~
+  # -- Image repository, e.g. `traefik/whoami`. Required: rendering fails when unset
   repository: ~
+  # -- Image pull policy (Always, IfNotPresent or Never)
   pullPolicy: IfNotPresent
+  # -- Image tag; falls back to the chart appVersion when empty
   tag: latest
 
 # -- Override the image ENTRYPOINT. Leave empty to keep the image default.
@@ -28,26 +33,50 @@ command: []
 args: []
 # args: ["bundle", "exec", "sidekiq"]
 
-# -- Set custom environment variables
-environment: {}
+# -- Custom environment variables, a list in the Kubernetes `env` format (`name` with `value` or `valueFrom`)
+environment: []
 # - name: MY_ENV_VAR
 #   value: "my_value"
 
+# -- Sources for environment variables, passed to the container as `envFrom` (configMapRef / secretRef)
+envFrom: []
+# - secretRef:
+#     name: my-secret
+
+# -- Port the container listens on (the `http` port); empty means same as `service.port`
+containerPort: ""
+
+# -- Secrets used to pull the image, a list of `name:` references to existing Secrets
 imagePullSecrets: []
+
+# -- Override the chart name used in resource names and the `app.kubernetes.io/name` label
 nameOverride: ""
+
+# -- Override the full resource name (replaces `<release>-<chart>`)
 fullnameOverride: ""
 
 serviceAccount:
+  # -- Create a ServiceAccount; when false the pod uses `name` or the namespace `default` account
   create: true
+  # -- Mount the service account token into the pod (`automountServiceAccountToken`); set to false if the workload does not call the Kubernetes API
+  automount: true
+  # -- Annotations for the ServiceAccount (e.g. IAM role bindings); only used when `create` is true
   annotations: {}
+  # -- ServiceAccount name; defaults to the full resource name when `create` is true, otherwise to `default`
   name: ""
 
+# -- Annotations for the pod template
 podAnnotations: {}
 
+# -- Pod-level securityContext. `fsGroup` makes mounted volumes writable for the container user
 podSecurityContext:
   fsGroup: 911
 
+# -- Container securityContext; defaults follow the restricted Pod Security Standard. Overriding it replaces the whole map, so repeat the keys you want to keep
 securityContext:
+  allowPrivilegeEscalation: false
+  seccompProfile:
+    type: RuntimeDefault
   capabilities:
     drop:
       - ALL
@@ -56,25 +85,53 @@ securityContext:
   runAsUser: 911
   runAsGroup: 911
 
+# -- Liveness probe, httpGet; any other probe field (periodSeconds, ...) is passed through
 livenessProbe:
+  # -- Render the probe on the container
   enabled: false
+  # -- Seconds to wait after the container starts before probing
   initialDelaySeconds: 10
-  port: 8080
+  # -- Port number or container port name (`http` follows the container port)
+  port: http
+  # -- HTTP path to request
   path: /
 
+# -- Readiness probe, httpGet; any other probe field (periodSeconds, ...) is passed through
 readinessProbe:
+  # -- Render the probe on the container
   enabled: false
+  # -- Seconds to wait after the container starts before probing
   initialDelaySeconds: 10
-  port: 8080
+  # -- Port number or container port name (`http` follows the container port)
+  port: http
+  # -- HTTP path to request
+  path: /
+
+# -- Startup probe, httpGet; any other probe field (periodSeconds, ...) is passed through
+startupProbe:
+  # -- Render the probe on the container
+  enabled: false
+  # -- Seconds to wait after the container starts before probing
+  initialDelaySeconds: 10
+  # -- Port number or container port name (`http` follows the container port)
+  port: http
+  # -- HTTP path to request
   path: /
 
 service:
+  # -- Service type (ClusterIP, NodePort or LoadBalancer)
   type: ClusterIP
+  # -- Service port; also the container port unless `containerPort` is set
   port: 5314
+  # -- Annotations for the Service (e.g. Tailscale, MetalLB, external-dns)
+  annotations: {}
 
 ingress:
+  # -- Create an Ingress
   enabled: false
+  # -- `ingressClassName` of the Ingress; omitted when empty
   className: ""
+  # -- Annotations for the Ingress
   annotations: {}
   # Optional catch-all backend. Useful for e.g. Tailscale funnel ingresses,
   # and may point at any service (not just this chart's own service).
@@ -83,69 +140,82 @@ ingress:
   #     name: argocd-server
   #     port:
   #       number: 80      # or use a named port: `name: webhook`
+  # -- Ingress rules; every path routes to this chart's Service on `service.port`. `pathType` defaults to ImplementationSpecific
   hosts:
     - host: my-subdomain.my-domain.com
       paths:
         - path: /
           pathType: ImplementationSpecific
+  # -- Ingress TLS entries (`hosts` and an optional `secretName`)
   tls: []
   #  - hosts:
   #      - chart-example.local
   #    secretName: chart-example-tls   # optional (omit for e.g. Tailscale)
 
+# -- Container resource requests and limits (passed as `resources`)
 resources:
   requests: {}
   limits: {}
 
+# -- Node selector for the pod
 nodeSelector: {}
 
 # -- PriorityClass for the pod, e.g. so a pod pinned to one node can preempt others
 priorityClassName: ""
 
+# -- Tolerations for the pod
 tolerations: []
 
+# -- Affinity rules for the pod
 affinity: {}
 
 # Persistence configuration
 persistence:
-  # Enable persistence
+  # -- Mount a PersistentVolumeClaim (created unless `existingClaim` is set)
   enabled: false
 
-  # Name of the PVC. If not set, will be generated as {release-name}-pvc
+  # -- Name of an existing PVC to mount instead of creating one. When set, no PVC is created.
+  existingClaim: ""
+
+  # -- Annotations for the PVC, e.g. `helm.sh/resource-policy: keep` to retain the PVC (and its data) on `helm uninstall`
+  annotations: {}
+
+  # -- Name of the PVC; defaults to `<fullname>-pvc`. Ignored when `existingClaim` is set
   name: ""
 
-  # Storage size for the PVC
+  # -- Storage size requested by the PVC
   size: "1Gi"
 
-  # Access mode for the PVC (ReadWriteOnce, ReadOnlyMany, or ReadWriteMany)
+  # -- Access mode of the PVC (ReadWriteOnce, ReadOnlyMany, ReadWriteMany or ReadWriteOncePod)
   accessMode: "ReadWriteOnce"
 
-  # Storage class name. If not set, will use the default storage class
+  # -- Storage class name; the cluster default storage class is used when empty
   storageClass: ""
 
-  # Mount path for the PVC in the container (default: /data)
+  # -- Mount path of the PVC in the container
   mountPath: "/data"
 
-# Mount additional emptyDir volumes. Useful when readOnlyRootFilesystem is enabled.
+# -- Mount additional emptyDir volumes (list of `name` and `mountPath`), e.g. a writable /tmp while `readOnlyRootFilesystem` is on
 extraEmptyDirs: []
 # - name: tmp
 #   mountPath: /tmp
 
-# Additional PersistentVolumeClaims to create and mount
+# -- Additional PersistentVolumeClaims to create and mount, named `<fullname>-<name>`. Per entry: `name`, `mountPath`, `size` (default 1Gi), `accessMode` (default ReadWriteOnce), `storageClass`, `annotations`
 additionalPersistentVolumeClaims: []
 # - name: media          # PVC name suffix (becomes {fullname}-media)
 #   size: "10Gi"
 #   accessMode: "ReadWriteOnce"
 #   storageClass: ""
 #   mountPath: "/media"
+#   annotations: {}        # e.g. helm.sh/resource-policy: keep
 
-# Additional volumes to add to the pod (raw Kubernetes volume specs)
+# -- Additional volumes to add to the pod (raw Kubernetes volume specs)
 additionalVolumes: []
 # - name: my-config
 #   configMap:
 #     name: my-configmap
 
-# Additional volume mounts to add to the container (raw Kubernetes volumeMount specs)
+# -- Additional volume mounts to add to the container (raw Kubernetes volumeMount specs)
 additionalVolumeMounts: []
 # - name: my-config
 #   mountPath: /etc/myapp/config

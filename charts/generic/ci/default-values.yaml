@@ -1,0 +1,7 @@
+image:
+  registry: docker.io
+  repository: traefik/whoami
+  tag: v1.12.0
+args: ["--port=8080"]
+service:
+  port: 8080
