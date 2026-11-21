@@ -4,6 +4,31 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: publish the chart to the OCI registry ghcr.io/tibuntu/charts and document installing from it
+        - kind: added
+          description: GitHub Releases carry these changes as release notes
+      artifacthub.io/license: Apache-2.0
+    apiVersion: v2
+    created: "2026-11-21T11:12:55.796868972Z"
+    description: A Helm chart for generic applications
+    digest: 3cb1edadb1a51b1a16d005a93123155ce1c66dfc4a9b7735867a9687def85317
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: tibuntu
+      url: https://github.com/tibuntu
+    name: generic
+    sources:
+    - https://github.com/tibuntu/helm-charts
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.10.1/generic-0.10.1.tgz
+    version: 0.10.1
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: add persistence.annotations (e.g. helm.sh/resource-policy keep), persistence.existingClaim and per-entry annotations on additionalPersistentVolumeClaims
         - kind: changed
           description: probes default to the container port (named port http); any probe field (periodSeconds, timeoutSeconds, failureThreshold, ...) can now be set and a startupProbe is available
@@ -433,4 +458,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-11-21T09:12:18.522579225Z"
+generated: "2026-11-21T11:12:55.797017319Z"
