@@ -35,7 +35,7 @@ Releases are automated by `.github/workflows/helm.yml` (`helm/chart-releaser-act
 
 - **Values live in three places:** `values.yaml` (every value needs a `# -- ` comment; helm-docs builds the README from it and `README.md.gotmpl`), `values.schema.json`, and the template. The schema is strict (`additionalProperties: false`): a new value missing from it fails installs. Pass-through Kubernetes objects stay open.
 - **Image:** `registry/repository:tag`. `image.registry` and `image.repository` are enforced by `required` in the template, not the schema, so `helm lint` with defaults stays green.
-- **Security defaults:** UID/GID 911, meets Pod Security Standard `restricted` (runAsNonRoot, readOnlyRootFilesystem, no privilege escalation, drop ALL, seccomp RuntimeDefault). Helm merges maps, so a partial `securityContext` override keeps the other keys. The service account token is mounted unless `serviceAccount.automount: false`.
+- **Security defaults:** UID/GID 911, meets Pod Security Standard `restricted` (runAsNonRoot, readOnlyRootFilesystem, no privilege escalation, drop ALL, seccomp RuntimeDefault). Helm merges maps, so a partial `securityContext` override keeps the other keys. The service account token is not mounted unless `serviceAccount.automount: true`.
 - **`environment`:** a list in Kubernetes env format (`name` + `value`/`valueFrom`), default `[]`. The schema rejects non-empty maps but accepts `{}` for old files. `envFrom` is passed to the container.
 - **Ports:** `containerPort` defaults to `service.port`; the named port `http` follows it and the Service `targetPort` is `http`. No `ExternalName` service type.
 - **Probes:** liveness, readiness and startup, `httpGet` on port `http` by default; any other probe field passes through.
