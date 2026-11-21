@@ -4,6 +4,51 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: add persistence.annotations (e.g. helm.sh/resource-policy keep), persistence.existingClaim and per-entry annotations on additionalPersistentVolumeClaims
+        - kind: changed
+          description: probes default to the container port (named port http); any probe field (periodSeconds, timeoutSeconds, failureThreshold, ...) can now be set and a startupProbe is available
+        - kind: changed
+          description: default securityContext adds allowPrivilegeEscalation false and seccompProfile RuntimeDefault to meet the restricted Pod Security Standard; values files that override part of securityContext also receive both keys (set them explicitly to opt out); new serviceAccount.automount (default true) sets automountServiceAccountToken on the pod
+        - kind: changed
+          description: environment now defaults to [] and must be a list of Kubernetes env entries; a non-empty map is rejected by the schema (it never rendered valid YAML), so convert maps like FOO=bar to name/value list entries; an empty map is still accepted
+        - kind: added
+          description: add envFrom (configMapRef / secretRef sources), rendered on the container when set
+        - kind: added
+          description: add containerPort (default empty, same as service.port) so the container port can differ from the Service port; probes on the named port http follow it
+        - kind: added
+          description: add service.annotations, rendered on the Service (e.g. Tailscale, MetalLB, external-dns)
+        - kind: removed
+          description: remove ExternalName from the service.type enum; the template never rendered externalName, so the API server rejected such a Service
+        - kind: changed
+          description: unknown values keys now fail schema validation (a typo such as persistance is no longer silently ignored) and image.registry and image.repository are required (helm template and install fail without them); remove stray keys from your values files and set both image fields
+        - kind: added
+          description: add a helm test (TCP connect to the Service), NOTES.txt install hints and a .helmignore that keeps ci/ out of the package
+        - kind: added
+          description: document every value and add an install example to the README
+        - kind: added
+          description: add chart metadata (maintainers, sources, license)
+      artifacthub.io/license: Apache-2.0
+    apiVersion: v2
+    created: "2026-11-21T09:12:18.52244308Z"
+    description: A Helm chart for generic applications
+    digest: 3c3e8578426a49c04a0ab74b2bc89ab21336cf352e914af5e9bafb71f103b36e
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: tibuntu
+      url: https://github.com/tibuntu
+    name: generic
+    sources:
+    - https://github.com/tibuntu/helm-charts
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.10.0/generic-0.10.0.tgz
+    version: 0.10.0
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: add priorityClassName value
     apiVersion: v2
     created: "2026-10-07T10:55:07.767310276Z"
@@ -388,4 +433,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-10-07T10:55:07.76734595Z"
+generated: "2026-11-21T09:12:18.522579225Z"
