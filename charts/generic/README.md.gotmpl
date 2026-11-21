@@ -17,6 +17,15 @@ helm install my-app tibuntu/generic \
   --set image.tag=v1.12.0
 ```
 
+The chart is also published as an OCI artifact; no `helm repo add` needed:
+
+```bash
+helm install my-app oci://ghcr.io/tibuntu/charts/generic --version {{ template "chart.version" . }} \
+  --set image.registry=docker.io \
+  --set image.repository=traefik/whoami \
+  --set image.tag=v1.12.0
+```
+
 `image.registry` and `image.repository` are required; rendering fails without them. Unknown keys in your values are rejected by the chart's schema, so a typo fails the install instead of being ignored.
 
 {{ template "chart.maintainersSection" . }}

@@ -1,6 +1,6 @@
 # generic
 
-![Version: 0.10.0](https://img.shields.io/badge/Version-0.10.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
+![Version: 0.10.1](https://img.shields.io/badge/Version-0.10.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 A Helm chart for generic applications
 
@@ -11,6 +11,15 @@ A Helm chart for generic applications
 ```bash
 helm repo add tibuntu https://tibuntu.github.io/helm-charts
 helm install my-app tibuntu/generic \
+  --set image.registry=docker.io \
+  --set image.repository=traefik/whoami \
+  --set image.tag=v1.12.0
+```
+
+The chart is also published as an OCI artifact; no `helm repo add` needed:
+
+```bash
+helm install my-app oci://ghcr.io/tibuntu/charts/generic --version 0.10.1 \
   --set image.registry=docker.io \
   --set image.repository=traefik/whoami \
   --set image.tag=v1.12.0

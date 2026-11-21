@@ -19,7 +19,7 @@ Releases are automated by `.github/workflows/helm.yml` (`helm/chart-releaser-act
 
 1. Bump `version` in `Chart.yaml`. The chart is 0.x: a breaking change bumps the minor version.
 2. Replace the `artifacthub.io/changes` annotation with this version's entries only (it describes the current version, not history). A `kind: changed` entry says how to migrate. `helm.yml` renders these entries into `RELEASE-NOTES.md`, which `cr.yaml` makes the GitHub Release body (Renovate shows it in update PRs).
-3. Merge to `main`. A GitHub Release `<chart-name>-<version>` is created and `index.yaml` on `gh-pages` updated.
+3. Merge to `main`. A GitHub Release `<chart-name>-<version>` is created, `index.yaml` on `gh-pages` updated, and the package pushed to `oci://ghcr.io/tibuntu/charts` (existing versions are skipped, never overwritten).
 
 `ct lint` fails a PR that changes anything under `charts/<name>/` (including `ci/`) without a version bump. That includes Renovate PRs that only bump an image in `ci/` or `templates/tests/`: bump the version by hand.
 
