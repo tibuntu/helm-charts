@@ -17,6 +17,7 @@ jobs:
     needs: test
     permissions:
       contents: write
+      packages: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,5 +49,9 @@ jobs:
           charts_dir: charts/
           config: cr.yaml
           skip_existing: true
+          # Also push each new package to ghcr.io (cr push, honours skip_existing).
+          oci_registry_url: oci://ghcr.io/${{ github.repository_owner }}/charts
+          oci_username: ${{ github.actor }}
+          oci_password: ${{ secrets.GITHUB_TOKEN }}
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

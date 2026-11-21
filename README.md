@@ -45,6 +45,15 @@ helm install my-app tibuntu/generic \
 helm status my-app
 ```
 
+The charts are also published to the OCI registry `ghcr.io/tibuntu/charts`, which needs no `helm repo add`:
+
+```bash
+helm install my-app oci://ghcr.io/tibuntu/charts/generic \
+  --set image.registry=docker.io \
+  --set image.repository=traefik/whoami \
+  --set image.tag=v1.12.0
+```
+
 ## Running Voyager
 
 [Voyager](https://github.com/aeharding/voyager), a web client for Lemmy, runs on the `generic` chart. The `voyager` chart is no longer maintained; its published versions stay installable from the repository.
