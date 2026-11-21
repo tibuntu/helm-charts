@@ -3,6 +3,29 @@ entries:
   generic:
   - annotations:
       artifacthub.io/changes: |
+        - kind: changed
+          description: serviceAccount.automount now defaults to false, so the service account token is no longer mounted into the pod; set serviceAccount.automount=true if the workload calls the Kubernetes API
+      artifacthub.io/license: Apache-2.0
+    apiVersion: v2
+    created: "2026-11-21T11:20:27.385477033Z"
+    description: A Helm chart for generic applications
+    digest: 2b3d3f37a17c24081bdf4b47b046b296865a2d0ba92ecc4ae77f4f2c1a276713
+    home: https://github.com/tibuntu/helm-charts/tree/main/charts/generic
+    keywords:
+    - generic
+    kubeVersion: '>=1.22.0-0'
+    maintainers:
+    - name: tibuntu
+      url: https://github.com/tibuntu
+    name: generic
+    sources:
+    - https://github.com/tibuntu/helm-charts
+    type: application
+    urls:
+    - https://github.com/tibuntu/helm-charts/releases/download/generic-0.11.0/generic-0.11.0.tgz
+    version: 0.11.0
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: publish the chart to the OCI registry ghcr.io/tibuntu/charts and document installing from it
         - kind: added
@@ -458,4 +481,4 @@ entries:
     urls:
     - https://github.com/tibuntu/helm-charts/releases/download/voyager-1.0.0/voyager-1.0.0.tgz
     version: 1.0.0
-generated: "2026-11-21T11:12:55.797017319Z"
+generated: "2026-11-21T11:20:27.385588552Z"
